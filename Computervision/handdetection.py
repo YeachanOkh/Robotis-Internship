@@ -69,42 +69,42 @@ class handDetector():
 
 def main():
     pTime = 0
-cTime = 0
-detector = handDetector()
+    cTime = 0
+    detector = handDetector()
 
-# Initializing RealSense pipeline
-pipeline = rs.pipeline()
-config = rs.config()
-config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
-config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-pipeline.start(config)
+    # Initializing RealSense pipeline
+    pipeline = rs.pipeline()
+    config = rs.config()
+    config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+    config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+    pipeline.start(config)
 
-align = rs.align(rs.stream.color)
+    align = rs.align(rs.stream.color)
 
-while True:
-    depthImg = detector.rsToCv(pipeline, align)[0]
-    colorImg = detector.rsToCv(pipeline, align)[1]
-    depthFrame = detector.rsToCv(pipeline, align)[2]
+    while True:
+        depthImg = detector.rsToCv(pipeline, align)[0]
+        colorImg = detector.rsToCv(pipeline, align)[1]
+        depthFrame = detector.rsToCv(pipeline, align)[2]
 
-    imgHands = detector.findHands(colorImg)
-    lmList = detector.findPosition(imgHands)
+        imgHands = detector.findHands(colorImg)
+        lmList = detector.findPosition(imgHands)
 
-    if lmList != []:
-        print(lmList[0])
+        if lmList != []:
+            print(lmList[0])
 
-    distance = detector.findDistance(lmList, depthFrame, colorImg)
+        distance = detector.findDistance(lmList, depthFrame, colorImg)
 
-    cTime = time.time()
-    fps = 1/(cTime - pTime)
-    pTime = cTime
+        cTime = time.time()
+        fps = 1/(cTime - pTime)
+        pTime = cTime
 
-    cv2.putText(imgHands, str(int(fps)), (5,55), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 0), 2)
-    cv2.imshow("Capture Device", colorImg)
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+        cv2.putText(imgHands, str(int(fps)), (5,55), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 0), 2)
+        cv2.imshow("Capture Device", colorImg)
+        if cv2.waitKey(1) & 0xFF == ord('q'):
+            break
 
-pipeline.stop()
-cv2.destroyAllWindows()
+    pipeline.stop()
+    cv2.destroyAllWindows()
 
 
 if __name__ == "__main__":
