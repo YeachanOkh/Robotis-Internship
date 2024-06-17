@@ -1,43 +1,24 @@
-import time 
 import RPi.GPIO as GPIO
+import time
 
-servo1_pin = 22
-GPIO.setmode(GPIO.BOARD)
-GPIO.setup(servo1_pin,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
+# setup the GPIO pin for the servo
+servo_pin = 13
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(servo_pin,GPIO.OUT)
 
-servo1 = GPIO.PWM(servo1_pin, 50)     # Sets up pin 11 as a PWM pin
-servo1.start(0)               # Starts running PWM on the pin and sets it to 0
+# setup PWM process
+pwm = GPIO.PWM(servo_pin,50) # 50 Hz (20 ms PWM period)
 
-def SetAngle(angle):
-	duty = angle / 18 + 2
-	GPIO.output(servo1_pin, True)
-	servo1.ChangeDutyCycle(duty)
-	time.sleep(1)
-	GPIO.output(servo1_pin, False)
-	servo1.ChangeDutyCycle(0)
-	
-SetAngle(90)
+pwm.start(7) # start PWM by rotating to 90 degrees
 
-servo1.stop()
-GPIO.cleanup
+for ii in range(0,3):
+    pwm.ChangeDutyCycle(2.0) # rotate to 0 degrees
+    time.sleep(0.5)
+    pwm.ChangeDutyCycle(12.0) # rotate to 180 degrees
+    time.sleep(0.5)
+    pwm.ChangeDutyCycle(7.0) # rotate to 90 degrees
+    time.sleep(0.5)
 
-# gpio.setup(16,gpio.OUT)  # Sets up pin 11 to an output (instead of an input)
-# p1 = gpio.PWM(16, 50)     # Sets up pin 11 as a PWM pin
-# p1.start(0)               # Starts running PWM on the pin and sets it to 0
-# print("servo running")
-# gpio.setup(17,gpio.OUT)  # Sets up pin 11 to an output (instead of an input)
-# p2 = gpio.PWM(17, 50)     # Sets up pin 11 as a PWM pin
-# p2.start(0)               # Starts running PWM on the pin and sets it to 0
-# print("servo running")
-# gpio.setup(27,gpio.OUT)  # Sets up pin 11 to an output (instead of an input)
-# p3 = gpio.PWM(27, 50)     # Sets up pin 11 as a PWM pin
-# p3.start(0)               # Starts running PWM on the pin and sets it to 0
-# print("servo running")
-# gpio.setup(22,gpio.OUT)  # Sets up pin 11 to an output (instead of an input)
-# p4 = gpio.PWM(22, 50)     # Sets up pin 11 as a PWM pin
-# p4.start(0)               # Starts running PWM on the pin and sets it to 0
-# print("servo running")
-
-# Move the servo back and forth
-# Clean up everything
-#p.stop()                 # At the end of the program, stop the PWM
+pwm.ChangeDutyCycle(0) # this prevents jitter
+pwm.stop() # stops the pwm on 13
+GPIO.cleanup() # good practice when finished using a pin
