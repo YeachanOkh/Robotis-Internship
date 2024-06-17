@@ -30,36 +30,40 @@ for ii in range(0,3):
     time.sleep(0.5)
     pwm1.ChangeDutyCycle(7.0) # rotate to 90 degrees
     time.sleep(0.5)
-pwm1.ChangeDutyCycle(0) # this prevents jitter
-pwm1.stop() # stops the pwm on 13
 
-for iii in range(0,3):
+
+#for iii in range(0,3):
     pwm2.ChangeDutyCycle(2.0) # rotate to 0 degrees
     time.sleep(0.5)
     pwm2.ChangeDutyCycle(12.0) # rotate to 180 degrees
     time.sleep(0.5)
     pwm2.ChangeDutyCycle(7.0) # rotate to 90 degrees
     time.sleep(0.5)
-pwm2.ChangeDutyCycle(0) # this prevents jitter
-pwm2.stop() # stops the pwm on 13
+
     
-for iiii in range(0,3):
+#for iiii in range(0,3):
     pwm3.ChangeDutyCycle(2.0) # rotate to 0 degrees
     time.sleep(0.5)
     pwm3.ChangeDutyCycle(12.0) # rotate to 180 degrees
     time.sleep(0.5)
     pwm3.ChangeDutyCycle(7.0) # rotate to 90 degrees
     time.sleep(0.5)
-pwm3.ChangeDutyCycle(0) # this prevents jitter
-pwm3.stop() # stops the pwm on 13
 
-for iiiii in range(0,3):
+
+#for iiiii in range(0,3):
     pwm4.ChangeDutyCycle(2.0) # rotate to 0 degrees
     time.sleep(0.5)
     pwm4.ChangeDutyCycle(12.0) # rotate to 180 degrees
     time.sleep(0.5)
     pwm4.ChangeDutyCycle(7.0) # rotate to 90 degrees
     time.sleep(0.5)
+
+pwm1.ChangeDutyCycle(0) # this prevents jitter
+pwm1.stop() # stops the pwm on 13
+pwm2.ChangeDutyCycle(0) # this prevents jitter
+pwm2.stop() # stops the pwm on 13
+pwm3.ChangeDutyCycle(0) # this prevents jitter
+pwm3.stop() # stops the pwm on 13
 pwm4.ChangeDutyCycle(0) # this prevents jitter
 pwm4.stop() # stops the pwm on 13
 
