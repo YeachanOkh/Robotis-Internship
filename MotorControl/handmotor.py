@@ -1,25 +1,26 @@
 import time 
-import RPi.GPIO as gpio
+import RPi.GPIO as GPIO
 
-servo1_pin = 25
-gpio.setmode(gpio.BCM)
-gpio.setup(servo1_pin,gpio.OUT)  # Sets up pin 11 to an output (instead of an input)
+servo1_pin = 22
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(servo1_pin,GPIO.OUT)  # Sets up pin 11 to an output (instead of an input)
 
-p = gpio.PWM(servo1_pin, 50)     # Sets up pin 11 as a PWM pin
-p.start(0)               # Starts running PWM on the pin and sets it to 0
-print("servo running")
+servo1 = GPIO.PWM(servo1_pin, 50)     # Sets up pin 11 as a PWM pin
+servo1.start(0)               # Starts running PWM on the pin and sets it to 0
 
-for ii in range(0,3):
-    p.ChangeDutyCycle(2.0) # rotate to 0 degrees
-    time.sleep(0.5)
-    p.ChangeDutyCycle(12.0) # rotate to 180 degrees
-    time.sleep(0.5)
-    p.ChangeDutyCycle(7.0) # rotate to 90 degrees
-    time.sleep(0.5)
+def SetAngle(angle):
+	duty = angle / 18 + 2
+	GPIO.output(servo1_pin, True)
+	servo1.ChangeDutyCycle(duty)
+	time.sleep(1)
+	GPIO.output(servo1_pin, False)
+	servo1.ChangeDutyCycle(0)
+	
+SetAngle(90)
 
-p.ChangeDutyCycle(0) # this prevents jitter
-p.stop() # stops the pwm on 13
-gpio.cleanup() # good practice when finished using a pin
+servo1.stop()
+GPIO.cleanup
+
 # gpio.setup(16,gpio.OUT)  # Sets up pin 11 to an output (instead of an input)
 # p1 = gpio.PWM(16, 50)     # Sets up pin 11 as a PWM pin
 # p1.start(0)               # Starts running PWM on the pin and sets it to 0
