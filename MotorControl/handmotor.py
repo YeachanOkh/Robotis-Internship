@@ -23,7 +23,7 @@ pwm2.start(7) # start PWM by rotating to 90 degrees
 pwm3.start(7) # start PWM by rotating to 90 degrees
 pwm4.start(7) # start PWM by rotating to 90 degrees
 
-for ii in range(0,3):
+for ii in range(0,9):
     pwm1.ChangeDutyCycle(2.0) # rotate to 0 degrees
     time.sleep(0.5)
     pwm1.ChangeDutyCycle(12.0) # rotate to 180 degrees
