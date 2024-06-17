@@ -301,9 +301,11 @@ def debug_bvm_push_in():
     time.sleep(2)
     
 
-if __name__ == "__main__":
+if __name__ == "__main__":print("set up move")
+    # motor.simMotorRun([30, 222, 260, 47, 272], [0, 1, 2, 3, 4])  # Reset claw looking up
+    # time.sleep(2)
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])  # ALWAYS SET SPEED BEFORE ANYTHING
-    motor.simMotorRun([225], [1])  # Reset claw looking up
+    motor.simMotorRun([222], [1])  # Reset claw looking up
 
     # velocity = [25, 25, 25, 25, 25]
     # ids = [0, 1, 2, 3, 4]
