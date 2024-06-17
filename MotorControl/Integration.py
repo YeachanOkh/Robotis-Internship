@@ -308,7 +308,7 @@ if __name__ == "__main__":
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])  # ALWAYS SET SPEED BEFORE ANYTHING
     motor.simMotorRun([270], [1])
     motor.simMotorRun([45], [2])
-    motor.simMotorRun([260], [3])  # Reset claw looking up
+    motor.simMotorRun([265], [3])  # Reset claw looking up
 
     # velocity = [25, 25, 25, 25, 25]
     # ids = [0, 1, 2, 3, 4]
