@@ -19,7 +19,7 @@ for ii in range(0,3):
 
 p.ChangeDutyCycle(0) # this prevents jitter
 p.stop() # stops the pwm on 13
-GPIO.cleanup() # good practice when finished using a pin
+gpio.cleanup() # good practice when finished using a pin
 # gpio.setup(16,gpio.OUT)  # Sets up pin 11 to an output (instead of an input)
 # p1 = gpio.PWM(16, 50)     # Sets up pin 11 as a PWM pin
 # p1.start(0)               # Starts running PWM on the pin and sets it to 0
