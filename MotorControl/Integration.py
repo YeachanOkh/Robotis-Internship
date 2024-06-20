@@ -305,7 +305,7 @@ if __name__ == "__main__":
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])  # ALWAYS SET SPEED BEFORE ANYTHING
-    # time.sleep(2)  
+    time.sleep(2)  
     motor.simMotorRun([130,270,92,140], [4,1,3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
 
     # time.sleep(1)
