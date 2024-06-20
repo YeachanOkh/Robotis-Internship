@@ -306,7 +306,7 @@ if __name__ == "__main__":
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])  # ALWAYS SET SPEED BEFORE ANYTHING
     time.sleep(5)  
-    motor.simMotorRun([260,295,160,65], [4,1,3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
+    motor.simMotorRun([260,295,160,45], [4,1,3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
     # motor.simMotorRun([20],[0])
     # motor.simMotorRun([110,20], [3,0])
     # time.sleep(5)
