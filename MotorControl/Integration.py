@@ -309,7 +309,7 @@ if __name__ == "__main__":
     motor.simMotorRun([270], [1])
     motor.simMotorRun([30], [2])
     motor.simMotorRun([180], [3])  
-    motor.simMotorRun([250], [4])# Reset claw looking up
+    motor.simMotorRun([265], [4])# Reset claw looking up
 
     # velocity = [25, 25, 25, 25, 25]
     # ids = [0, 1, 2, 3, 4]
