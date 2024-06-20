@@ -304,9 +304,9 @@ def debug_bvm_push_in():
 if __name__ == "__main__":
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,45,265,180], [0,1,2,3,4])  # ALWAYS SET SPEED BEFORE ANYTHING
-    time.sleep(2)  
-    motor.simMotorRun([140,1], [3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
+    # motor.simMotorRun([90,270,45,265,180], [0,1,2,3,4])  # ALWAYS SET SPEED BEFORE ANYTHING
+    # time.sleep(2)  
+    motor.simMotorRun([1], [2])  # ALWAYS SET SPEED BEFORE ANYTHING
 
     # time.sleep(1)
     # motor.simMotorRun([20],[0])
