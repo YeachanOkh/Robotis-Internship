@@ -310,7 +310,7 @@ if __name__ == "__main__":
     # motor.simMotorRun([20],[0])
     # motor.simMotorRun([110,20], [3,0])
     time.sleep(1)
-    motor.simMotorRun([200], [4])
+    motor.simMotorRun([190,55,160], [4,2,3])
     # velocity = [25, 25, 25, 25, 25]
     # ids = [0, 1, 2, 3, 4]
     # startAngles = [110, 223, 270, 47, 160]
