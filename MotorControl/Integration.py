@@ -306,11 +306,11 @@ if __name__ == "__main__":
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])  # ALWAYS SET SPEED BEFORE ANYTHING
     time.sleep(5)  
-    motor.simMotorRun([120,295,150,65], [4,1,3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
+    motor.simMotorRun([260,295,160,65], [4,1,3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
     # motor.simMotorRun([20],[0])
     # motor.simMotorRun([110,20], [3,0])
-    time.sleep(5)
-    motor.simMotorRun([260,55,160], [4,2,3])
+    # time.sleep(5)
+    # motor.simMotorRun([260,65,160], [4,2,3])
     # velocity = [25, 25, 25, 25, 25]
     # ids = [0, 1, 2, 3, 4]
     # startAngles = [110, 223, 270, 47, 160]
