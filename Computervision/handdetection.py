@@ -1,111 +1,84 @@
 import cv2
-import mediapipe as mp
-import time
 import numpy as np
+import mediapipe as mp
 import pyrealsense2 as rs
 
-class handDetector():
-    def __init__(self, mode=False, maxHands=1, modelComplexity=1, detectionCon=0.5, trackCon=0.5):
-        self.mode = mode
-        self.maxHands = maxHands
-        self.modelComplexity = modelComplexity
-        self.detectionCon = detectionCon
-        self.trackCon = trackCon
+# Initialize MediaPipe hands and drawing modules
+mp_hands = mp.solutions.hands
+mp_drawing = mp.solutions.drawing_utils
 
-        self.mpHands = mp.solutions.hands
-        self.hands = self.mpHands.Hands(self.mode, self.maxHands, self.modelComplexity, self.detectionCon, self.trackCon)
-        self.mpDraw = mp.solutions.drawing_utils
+# Initialize hands module with some parameters
+hands = mp_hands.Hands(
+    static_image_mode=False,
+    max_num_hands=2,
+    min_detection_confidence=0.5,
+    min_tracking_confidence=0.5
+)
 
-    def rsToCv(self, pipeline, align):
+# Initialize RealSense pipeline
+pipeline = rs.pipeline()
+config = rs.config()
+config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
+pipeline.start(config)
+
+align = rs.align(rs.stream.color)
+
+try:
+    while True:
+        # Wait for a coherent pair of frames: depth and color
         frames = pipeline.wait_for_frames()
         aligned_frames = align.process(frames)
 
         depth_frame = aligned_frames.get_depth_frame()
         color_frame = aligned_frames.get_color_frame()
 
+        if not depth_frame or not color_frame:
+            continue
+
+        # Convert images to numpy arrays
         depth_image = np.asanyarray(depth_frame.get_data())
         color_image = np.asanyarray(color_frame.get_data())
 
-        return [depth_image, color_image, depth_frame]
+        # Convert the BGR image to RGB
+        image_rgb = cv2.cvtColor(color_image, cv2.COLOR_BGR2RGB)
 
-    def findHands(self, imgRGB, draw=True):
-        self.results = self.hands.process(imgRGB)
-        # print(results.multi_hand_landmarks)
+        # Process the image and find hands
+        results = hands.process(image_rgb)
 
-        if self.results.multi_hand_landmarks:
-            for handLms in self.results.multi_hand_landmarks:
-                if draw:
-                    self.mpDraw.draw_landmarks(imgRGB, handLms, self.mpHands.HAND_CONNECTIONS)
-        return imgRGB
-    
-    def findPosition(self, imgRGB, handNo=0, draw=False):
-        lmList = []
-        if self.results.multi_hand_landmarks:
-            myHand = self.results.multi_hand_landmarks[handNo]
-            for id, lm in enumerate(myHand.landmark):
-                self.h = imgRGB.shape[0]
-                self.w = imgRGB.shape[1]
-                self.cx, self.cy = int(lm.x*self.w), int(lm.y*self.h)
-                lmList.append([id, self.cx, self.cy])
-                if draw:
-                    cv2.circle(imgRGB, (self.cx, self.cy), 15, (255, 0, 255), cv2.FILLED)
-                # Also print the distance from the depth sensing camera at these certain points
-        return lmList
-    
-    def findDistance (self, lmList, depth_frame, color_image, show=False):
-        distance = 0
-        if len(lmList) != 0:
-            if 0 <= self.cx < self.w & 0 <= self.cy < self.h:
-                print("Got here")
-                distance = 0
-                distance = depth_frame.get_distance(self.cx, self.cy) * 1000
-                cv2.circle(color_image, (self.cx, self.cy), 10, (255, 0, 0), -1)
-                cv2.putText(color_image, f'{distance:.0f} mm', (self.cx, self.cy - 10),
+        # Draw hand landmarks and extract the coordinates of landmark 0
+        if results.multi_hand_landmarks:
+            for hand_landmarks in results.multi_hand_landmarks:
+                # Draw landmarks
+                mp_drawing.draw_landmarks(color_image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+
+                # Extract coordinates of landmark 0
+                landmark_0 = hand_landmarks.landmark[0]
+                h, w, _ = color_image.shape
+                cx, cy = int(landmark_0.x * w), int(landmark_0.y * h)
+
+                # Ensure coordinates are within the valid range
+                if 0 <= cx < w and 0 <= cy < h:
+                    # Measure distance using the depth frame and convert to millimeters
+                    distance = depth_frame.get_distance(cx, cy) * 1000  # Convert meters to millimeters
+
+                    # Draw a circle at landmark 0 and display the distance
+                    cv2.circle(color_image, (cx, cy), 10, (255, 0, 0), -1)
+                    cv2.putText(color_image, f'{distance:.0f} mm', (cx, cy - 10),
                                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 0, 0), 2)
-            # print(f"Landmark 0 coordinates: (x: {self.cx}, y: {self.cy}), Distance: {distance:.0f} mm")
 
+                    # Print coordinates and distance
+                    print(f"Landmark 0 coordinates: (x: {cx}, y: {cy}), Distance: {distance:.0f} mm")
 
-                        
+        # Display the output
+        cv2.imshow('Hand Tracking', color_image)
 
-def main():
-    pTime = 0
-    cTime = 0
-    detector = handDetector()
-
-    # Initializing RealSense pipeline
-    pipeline = rs.pipeline()
-    config = rs.config()
-    config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
-    config.enable_stream(rs.stream.color, 640, 480, rs.format.bgr8, 30)
-    pipeline.start(config)
-
-    align = rs.align(rs.stream.color)
-
-    while True:
-        depthImg = detector.rsToCv(pipeline, align)[0]
-        colorImg = detector.rsToCv(pipeline, align)[1]
-        depthFrame = detector.rsToCv(pipeline, align)[2]
-
-        imgHands = detector.findHands(colorImg)
-        lmList = detector.findPosition(imgHands)
-
-        if lmList != []:
-            print(lmList[0])
-
-        distance = detector.findDistance(lmList, depthFrame, colorImg)
-
-        cTime = time.time()
-        fps = 1/(cTime - pTime)
-        pTime = cTime
-
-        cv2.putText(imgHands, str(int(fps)), (5,55), cv2.FONT_HERSHEY_COMPLEX, 2, (0, 0, 0), 2)
-        cv2.imshow("Capture Device", colorImg)
-        if cv2.waitKey(1) & 0xFF == ord('q'):
+        # Break the loop on pressing 'q'
+        if cv2.waitKey(5) & 0xFF == ord('q'):
             break
 
+finally:
+    # Release resources
     pipeline.stop()
     cv2.destroyAllWindows()
-
-
-if __name__ == "__main__":
-    main()
+    hands.close()
