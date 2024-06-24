@@ -83,7 +83,7 @@
 #     cv2.destroyAllWindows()
 #     hands.close()
 import cv2
-import numpy as np
+import numpy
 import mediapipe as mp
 import pyrealsense2 as rs
 
