@@ -301,12 +301,12 @@ def debug_bvm_push_in():
     time.sleep(2)
     
 
-if __name__ == "__main__":
-    print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])  # ALWAYS SET SPEED BEFORE ANYTHING
-    time.sleep(3)  
-    motor.simMotorRun([260,295,160,45], [4,1,3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
+# if __name__ == "__main__":
+#     print("set up move")
+#     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
+#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])  # ALWAYS SET SPEED BEFORE ANYTHING
+#     time.sleep(3)  
+#     motor.simMotorRun([260,295,160,45], [4,1,3,2])  # ALWAYS SET SPEED BEFORE ANYTHING
     # motor.simMotorRun([20],[0])
     # motor.simMotorRun([110,20], [3,0])
     # time.sleep(5)
