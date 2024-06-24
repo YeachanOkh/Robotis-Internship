@@ -176,10 +176,16 @@ def Thankyou():
     start_time = time.time()
 if __name__ == "__main__":
     print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([30, 30, 30, 30, 45], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
-    motor.simMotorRun([210,90,265], [3,2,4])
+    motor.simMotorRun([220,85,265], [3,2,4])
+    time.sleep(0.3)
+    motor.simMotorRun([180],[4])
+    time.sleep(0.3)
+    motor.simMotorRun([265],[4])
+
+
     
 
 
