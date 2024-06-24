@@ -155,30 +155,30 @@ def debug_gcs_push_in():
     motor.simMotorRun([98, 225, 260, 47, 272], [0, 1, 2, 3, 4])  # Reset claw looking up
     time.sleep(1)
 
-def hello():
-    start_time = time.time()
-if __name__ == "__main__":
-    print("set up move")
-    motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(3)
-    motor.simMotorRun([180,50,265], [3,2,4])
-    time.sleep(0.3)
-    motor.simMotorRun([240],[1])
-    time.sleep(0.3)
-    motor.simMotorRun([300],[1])
-    time.sleep(0.3)
-    motor.simMotorRun([240],[1])
-    time.sleep(0.3)
-    motor.simMotorRun([300],[1])
-
-# def hello():
+# def Hello():
 #     start_time = time.time()
 # if __name__ == "__main__":
 #     print("set up move")
-#     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
+#     motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
 #     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     motor.simMotorRun([270,140,265,180], [1,2,3,4])
+#     time.sleep(3)
+#     motor.simMotorRun([180,50,265], [3,2,4])
+#     time.sleep(0.3)
+#     motor.simMotorRun([240],[1])
+#     time.sleep(0.3)
+#     motor.simMotorRun([300],[1])
+#     time.sleep(0.3)
+#     motor.simMotorRun([240],[1])
+#     time.sleep(0.3)
+#     motor.simMotorRun([300],[1])
+
+def Thankyou():
+    start_time = time.time()
+if __name__ == "__main__":
+    print("set up move")
+    motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    motor.simMotorRun([240,90,180], [3,2,4])
     
 
 
