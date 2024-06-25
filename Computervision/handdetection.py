@@ -1,5 +1,5 @@
 import cv2
-import numpy
+import numpy as np
 import mediapipe as mp
 import pyrealsense2 as rs
 import time
