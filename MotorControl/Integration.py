@@ -215,7 +215,6 @@ if __name__ == "__main__":
     motor.simMotorRun([265,160,40],[4,3,2])
     motor.dxlSetVelo([30, 30, 60, 60, 60], [0, 1, 2, 3, 4])
     motor.simMotorRun([30,145,255],[2,3,4])
-    time.sleep(0.1)
     motor.simMotorRun([40,160,265],[2,3,4])
     
     
