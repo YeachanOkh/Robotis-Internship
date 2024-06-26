@@ -255,11 +255,11 @@ if __name__ == "__main__":
     time.sleep(1)
     motor.simMotorRun([210],[3])
     time.sleep(0.3)
-    motor.simMotorRun([150],[3])
+    motor.simMotorRun([165],[3])
     time.sleep(0.3)
     motor.simMotorRun([210],[3])
     time.sleep(0.3)
-    motor.simMotorRun([150],[3])
+    motor.simMotorRun([165],[3])
 
 
 
