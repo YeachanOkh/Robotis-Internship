@@ -230,8 +230,8 @@ if __name__ == "__main__":
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
-    motor.simMotorRun([200,100,180],[3,2,0])
+    time.sleep(2)
+    motor.simMotorRun([200,80,180,160],[3,2,0,4])
 
 
 
