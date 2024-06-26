@@ -172,24 +172,24 @@ if __name__ == "__main__":
     time.sleep(0.1)
     motor.simMotorRun([300],[1])
 
-def Yes():
-    start_time = time.time()
-def yesno():
-    start_time=time.time()
-    print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
-    motor.simMotorRun([220,85,265], [3,2,4])
-    time.sleep(0.2)
-    motor.simMotorRun([180],[4])
-    time.sleep(0.2)
-    motor.simMotorRun([265],[4])
-    time.sleep(0.2)
-    motor.simMotorRun([180],[4])
-    time.sleep(0.2)
-    motor.simMotorRun([265],[4])
-if __name__ == "__main__":
+# def Yes():
+#     start_time = time.time()
+# def yesno():
+#     start_time=time.time()
+#     print("set up move")
+#     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+#     time.sleep(1)
+#     motor.simMotorRun([220,85,265], [3,2,4])
+#     time.sleep(0.2)
+#     motor.simMotorRun([180],[4])
+#     time.sleep(0.2)
+#     motor.simMotorRun([265],[4])
+#     time.sleep(0.2)
+#     motor.simMotorRun([180],[4])
+#     time.sleep(0.2)
+#     motor.simMotorRun([265],[4])
+# if __name__ == "__main__":
 
 
     
