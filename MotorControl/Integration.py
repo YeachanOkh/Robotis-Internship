@@ -172,7 +172,7 @@ def debug_gcs_push_in():
 #     time.sleep(0.3)
 #     motor.simMotorRun([300],[1])
 
-def Thankyou():
+def Yes():
     start_time = time.time()
 if __name__ == "__main__":
     print("set up move")
