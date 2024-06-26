@@ -209,7 +209,7 @@ def yesno():
     start_time=time.time()
 if __name__ == "__main__":
     print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
     motor.simMotorRun([265],[4])
