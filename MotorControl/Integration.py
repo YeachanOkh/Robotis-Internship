@@ -190,33 +190,36 @@ def debug_gcs_push_in():
 #     motor.simMotorRun([265],[4])
 
 
-# def Fistbump():
-#     start_time=time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(1)
-#     motor.simMotorRun([150,70],[3,2])
-#     time.sleep(0.01)
-#     motor.simMotorRun([155],[4])
-#     time.sleep(0.1)
-#     motor.simMotorRun([55],[2])
-
-
-
-def Highfive():
+def Fistbump():
     start_time=time.time()
 if __name__ == "__main__":
     print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
-    motor.simMotorRun([265,160,40],[4,3,2])
-    motor.dxlSetVelo([30, 30, 50, 50, 50], [0, 1, 2, 3, 4])
-    motor.simMotorRun([20,135,245],[2,3,4])
-    time.sleep(0.2)
-    motor.simMotorRun([40,160,265],[2,3,4])
+    motor.simMotorRun([150,70],[3,2])
+    time.sleep(0.01)
+    motor.simMotorRun([155],[4])
+    time.sleep(0.1)
+    motor.simMotorRun([55],[2])
+
+
+
+# def Highfive():
+#     start_time=time.time()
+# if __name__ == "__main__":
+#     print("set up move")
+#     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
+#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+#     time.sleep(1)
+#     motor.simMotorRun([265,160,40],[4,3,2])
+#     motor.dxlSetVelo([30, 30, 50, 50, 50], [0, 1, 2, 3, 4])
+#     motor.simMotorRun([20,135,245],[2,3,4])
+#     time.sleep(0.2)
+#     motor.simMotorRun([40,160,265],[2,3,4])
+
+
+
     
     
 
