@@ -229,7 +229,7 @@ def Highfive():
 if __name__ == "__main__":
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    motor.simMotorRun([70,270,140,265,180], [0,1,2,3,4])
 
 
 
