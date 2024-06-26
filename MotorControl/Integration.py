@@ -253,13 +253,13 @@ if __name__ == "__main__":
     time.sleep(1)
     motor.simMotorRun([170,70,150],[3,2,4])
     time.sleep(1)
-    motor.simMotorRun([150],[3])
-    time.sleep(0.3)
     motor.simMotorRun([210],[3])
     time.sleep(0.3)
     motor.simMotorRun([150],[3])
     time.sleep(0.3)
     motor.simMotorRun([210],[3])
+    time.sleep(0.3)
+    motor.simMotorRun([150],[3])
 
 
 
