@@ -8,7 +8,7 @@ import time
 mp_hands = mp.solutions.hands
 mp_drawing = mp.solutions.drawing_utils
 
-# Initialize hands module with some parameters
+# Initialize hands module with some parameters 
 hands = mp_hands.Hands(
     static_image_mode=False,
     max_num_hands=2,
@@ -49,11 +49,37 @@ try:
         # Process the image and find hands
         results = hands.process(image_rgb)
 
+        #Drawing bounding box around the hand
+        
+        
+
         # Draw hand landmarks and extract the coordinates of landmark 0
         if results.multi_hand_landmarks:
-            for hand_landmarks in results.multi_hand_landmarks:
+            for hand_landmarks, hand_world_landmarks in zip (results.multi_hand_landmarks, results.multi_handedness):
                 # Draw landmarks
                 mp_drawing.draw_landmarks(color_image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
+
+                #Coordinates for the bounding box
+                margin = 20 # Adjust this value to control the margin around the hand
+                x_min = y_min = float('inf')
+                x_max = y_max = float('-inf')
+                for landmark in hand_landmarks.landmark:
+                    x, y = int(landmark.x * color_image.shape[1]), int(landmark.y * color_image.shape[0])
+                    x_min, y_min = min(x_min, x), min(y_min, y)
+                    x_max, y_max = max(x_max, x), max(y_max, y)
+                
+                x_min = max(0, x_min - margin)
+                y_min = max(0, y_min - margin)
+                x_max = min(color_image.shape[1], x_max + margin)
+                y_max = min(color_image.shape[0], y_max + margin)
+
+                # Draw bounding box
+                cv2.rectangle(color_image, (x_min, y_min), (x_max, y_max), (0, 255, 0), 2)
+
+                # Display confidence score
+                confidence = hand_world_landmarks.classification[0].score
+                cv2.putText(color_image, f'Conf: {confidence:.2f}', (x_min, y_min - 10),
+                            cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
 
                 # Extract coordinates of landmark 0
                 landmark_0 = hand_landmarks.landmark[0]
