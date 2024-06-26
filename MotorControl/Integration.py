@@ -224,7 +224,7 @@ def debug_gcs_push_in():
 
 
 
-def Highfive():
+def Handshake():
     start_time=time.time()
 if __name__ == "__main__":
     print("set up move")
@@ -234,13 +234,13 @@ if __name__ == "__main__":
     motor.simMotorRun([185,65,180,150],[3,2,0,4])
     time.sleep(0.5)
     motor.dxlSetVelo([30, 30, 30, 30, 66], [0, 1, 2, 3, 4])
-    motor.simMotorRun([165],[4])
+    motor.simMotorRun([165,210],[4,3])
     time.sleep(0.1)
-    motor.simMotorRun([135],[4])
+    motor.simMotorRun([135,165],[4,3])
     time.sleep(0.1)
-    motor.simMotorRun([165],[4])
+    motor.simMotorRun([165,210],[4,3])
     time.sleep(0.1)
-    motor.simMotorRun([135],[4])
+    motor.simMotorRun([135,165],[4,3])
 
 
 
