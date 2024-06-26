@@ -228,10 +228,16 @@ def Highfive():
     start_time=time.time()
 if __name__ == "__main__":
     print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([40, 40, 40, 40, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(2)
     motor.simMotorRun([185,65,180,150],[3,2,0,4])
+    time.sleep(0.5)
+    motor.dxlSetVelo([30, 30, 30, 30, 66], [0, 1, 2, 3, 4])
+    motor.simMotorRun([175],[4])
+    time.sleep(0.1)
+    motor.simMotorRun([125],[4])
+
 
 
 
