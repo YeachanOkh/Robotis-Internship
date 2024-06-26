@@ -199,7 +199,7 @@ if __name__ == "__main__":
     time.sleep(1)
     motor.simMotorRun([170,55,180],[3,2,4])
     motor.dxlSetVelo([55,55,55],[2,3,4])
-    motor.simMotorRun([65],[2])
+    motor.simMotorRun([70],[2])
    
 
 
