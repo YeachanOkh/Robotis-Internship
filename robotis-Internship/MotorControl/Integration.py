@@ -254,7 +254,7 @@ if __name__ == "__main__":
     time.sleep(1)
     motor.simMotorRun([90,130,180],[1,2,3])
     time.sleep(0.01)
-    motor.dxlSetVelo([40, 40, 40, 60, 40], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([40, 40, 40, 65, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([225],[3])
     time.sleep(0.1)
     motor.simMotorRun([180],[3])
