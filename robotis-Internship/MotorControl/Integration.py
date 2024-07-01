@@ -267,14 +267,34 @@ def debug_gcs_push_in():
 
 
 
-def No():
-    start_time=time.time()
+# def NoGoodbyeCounting():
+#     start_time=time.time()
+# if __name__ == "__main__":
+#     print("set up move")
+#     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+#     time.sleep(1)
+#     motor.simMotorRun([220,85,265], [3,2,4])
+
+
+
+def Whatsup():
+    start_time = time.time()
 if __name__ == "__main__":
     print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
-    motor.simMotorRun([220,85,265], [3,2,4])
+    time.sleep(2)
+    motor.simMotorRun([180,50,265], [3,2,4])
+    time.sleep(0.1)
+    motor.simMotorRun([240],[1])
+    time.sleep(0.1)
+    motor.simMotorRun([300],[1])
+    time.sleep(0.1)
+    motor.simMotorRun([240],[1])
+    time.sleep(0.1)
+    motor.simMotorRun([300],[1])
+
    
 
 
