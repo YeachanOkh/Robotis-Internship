@@ -224,6 +224,7 @@ def debug_gcs_push_in():
 
 
 
+<<<<<<< HEAD:MotorControl/Integration.py
 # def Handshake():
 #     start_time=time.time()
 # if __name__ == "__main__":
@@ -245,14 +246,31 @@ def debug_gcs_push_in():
 
 
 def Thankyou():
+=======
+def Highfive():
+>>>>>>> 021676b99da8fd27f300b5be57538a4fcd86558d:robotis-Internship/MotorControl/Integration.py
     start_time=time.time()
 if __name__ == "__main__":
     print("set up move")
-    motor.dxlSetVelo([40, 40, 40, 50, 40], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([40, 40, 40, 40, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+<<<<<<< HEAD:MotorControl/Integration.py
     time.sleep(1)
     motor.simMotorRun([200],[1])
     
+=======
+    time.sleep(2)
+    motor.simMotorRun([185,65,180,150],[3,2,0,4])
+    time.sleep(0.5)
+    motor.dxlSetVelo([30, 30, 30, 30, 66], [0, 1, 2, 3, 4])
+    motor.simMotorRun([165],[4])
+    time.sleep(0.1)
+    motor.simMotorRun([135],[4])
+    time.sleep(0.1)
+    motor.simMotorRun([165],[4])
+    time.sleep(0.1)
+    motor.simMotorRun([135],[4])
+>>>>>>> 021676b99da8fd27f300b5be57538a4fcd86558d:robotis-Internship/MotorControl/Integration.py
 
 
 
