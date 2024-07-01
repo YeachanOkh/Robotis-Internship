@@ -233,7 +233,7 @@ def debug_gcs_push_in():
 #     time.sleep(1)
 #     motor.simMotorRun([185,65,180,150],[3,2,0,4])
 #     time.sleep(0.5)
-#     motor.dxlSetVelo([66, 66, 66, 66, 66], [0, 1, 2, 3, 4])
+#     motor.dxlSetVelo([55, 55, 55, 55, 55], [0, 1, 2, 3, 4])
 #     motor.simMotorRun([155,175],[4,3])
 #     time.sleep(0.1)
 #     motor.simMotorRun([195,205],[4,3])
