@@ -255,13 +255,13 @@ if __name__ == "__main__":
     motor.simMotorRun([90,130,180],[1,2,3])
     time.sleep(0.01)
     motor.dxlSetVelo([40, 40, 40, 65, 40], [0, 1, 2, 3, 4])
-    motor.simMotorRun([155],[3])
-    time.sleep(0.1)
-    motor.simMotorRun([225],[3])
+    motor.simMotorRun([220],[3])
     time.sleep(0.1)
     motor.simMotorRun([155],[3])
     time.sleep(0.1)
-    motor.simMotorRun([225],[3])
+    motor.simMotorRun([220],[3])
+    time.sleep(0.1)
+    motor.simMotorRun([155],[3])
 
 
 
