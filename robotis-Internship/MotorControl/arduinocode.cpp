@@ -20,9 +20,15 @@ void setup() {
   Servo5.attach(motor5);
   Serial.begin(9600);
 }
+void fistbump(){
+
+}
 void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
+    read the data
+    case to figure out which gesture 
+    check serial data and write to specific gesture
     Serial.print("You sent me: ");
     Serial.println(data);
     for (int i=0; i<60; i++){
