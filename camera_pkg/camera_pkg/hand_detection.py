@@ -6,9 +6,9 @@ import numpy as np
 import mediapipe as mp
 import pyrealsense2 as rs
 import time
-# class MyNode(Node):
-#     def __init__(self):
-#         super().__init__("camera_node")
+class MyNode(Node):
+    def __init__(self):
+        super().__init__("camera_node")
 
 def handdetect():
     # Initialize MediaPipe hands and drawing modules
@@ -128,10 +128,10 @@ def handdetect():
         hands.close()
 
 def main(args=None):
-    # rclpy.init(args=args)
-    # node=MyNode()
+    rclpy.init(args=args)
+    node=MyNode()
     handdetect()
-    # rclpy.shutdown()
+    rclpy.shutdown()
 
 if __name__=='__main__':
     main()
