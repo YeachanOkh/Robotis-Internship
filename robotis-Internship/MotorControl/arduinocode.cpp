@@ -118,8 +118,32 @@ void handshake() { //starting open hand
     }
   }
 
+void no () {
+    openhand();
+    for (int i=1; i<=60; i++){
+      if (i % 2 == 0) { //thumb moving 30
+        motorposition[0]--;
+        Servo1.write(motorposition[0]);
+      }
+      if (i % 3 == 0) { //index moving 20
+        motorposition[1]--;
+        Servo2.write(motorposition[1]);
+      }
+      if (i % 3 == 0) { //middle moving 20
+        motorposition[2]--;
+        Servo3.write(motorposition[2]);
+      } 
+      //ring finger moving 60
+      motorposition[3]--;
+      Servo4.write(motorposition[3]);
+      // pinky moving 60
+      motorposition[4]--;
+      Servo5.write(motorposition[4]);
+      delay(20);
+    }
+  }
 
-void goodbye () { // starting openhand
+void goodbye() { // starting openhand
     for (int i=1; i<=3; i++) {
       openhand();
       for (int i=1; i<=60; i++) {
