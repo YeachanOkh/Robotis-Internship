@@ -268,15 +268,9 @@ Command_dict = {
     'Hello': Hello(),
 }
 
-command_library = {
-    "greet": lambda: print("Hello! How can I help you?"),
-    "farewell": lambda: print("Goodbye! Have a great day!"),
-    "help": lambda: print("Available commands: greet, farewell, help"),
-}
-
 def execute_command(command):
-    if command in command_library:
-        command_library[command]()
+    if command in Command_dict:
+        Command_dict[command]()
     else:
         print("Invalid command. Please try again.")
 
@@ -292,14 +286,6 @@ if __name__ == "__main__":
     main()
 
 
-    
-
-
-    
-    
-    
-    
-    
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
