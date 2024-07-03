@@ -266,11 +266,7 @@ def Goodbye():
 
 Command_dict = {
     "Hello": Hello,
-}
-command_library = {
-    "greet": lambda: print("Hello! How can I help you?"),
-    "farewell": lambda: print("Goodbye! Have a great day!"),
-    "help": lambda: print("Available commands: greet, farewell, help"),
+    "No": No
 }
 
 def execute_command(command):
@@ -286,14 +282,12 @@ def main():
             print("Exiting program.")
             break
         execute_command(command)  
+        print("starting position")
+        motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
+        motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
 
 if __name__ == "__main__":
     main()
-
-
-    print("set up move")
-    motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
 
    
 
