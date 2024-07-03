@@ -265,7 +265,7 @@ def Goodbye():
 
 
 Command_dict = {
-    "Hello": Hello(),
+    "Hello": Hello,
 }
 command_library = {
     "greet": lambda: print("Hello! How can I help you?"),
