@@ -266,9 +266,36 @@ def Goodbye():
 
 command_dict = {
     'Hello': Hello(),
-    'Goodbye':Goodbye(),
-    'No':No(),
-    
+
+}
+
+command_library = {
+    "greet": lambda: print("Hello! How can I help you?"),
+    "farewell": lambda: print("Goodbye! Have a great day!"),
+    "help": lambda: print("Available commands: greet, farewell, help"),
+}
+
+def execute_command(command):
+    if command in command_library:
+        command_library[command]()
+    else:
+        print("Invalid command. Please try again.")
+
+def main():
+    while True:
+        command = input("Enter a command: ")
+        if command == "exit":
+            print("Exiting program.")
+            break
+        execute_command(command)  
+
+if __name__ == "__main__":
+    main()
+
+
+    command_dict = {
+    'No': No(),
+
 }
 
 command_library = {
