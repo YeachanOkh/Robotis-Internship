@@ -265,7 +265,12 @@ def Goodbye():
 
 
 Command_dict = {
-    'Hello': Hello(),
+    "Hello": Hello(),
+}
+command_library = {
+    "greet": lambda: print("Hello! How can I help you?"),
+    "farewell": lambda: print("Goodbye! Have a great day!"),
+    "help": lambda: print("Available commands: greet, farewell, help"),
 }
 
 def execute_command(command):
