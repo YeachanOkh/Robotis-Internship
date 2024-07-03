@@ -266,7 +266,13 @@ def Goodbye():
 
 Command_dict = {
     "Hello": Hello,
-    "No": No
+    "No": No,
+    "Thankyou": Thankyou,
+    "Handshake": Handshake,
+    "Highfive": Highfive,
+    "Goodbye": Goodbye,
+    "Yes": Yes,
+    "Fistbump": Fistbump,
 }
 
 def execute_command(command):
