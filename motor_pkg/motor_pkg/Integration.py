@@ -264,7 +264,7 @@ def Goodbye():
     motor.simMotorRun([220,85,265], [3,2,4])
 
 
-command_dict = {
+Command_dict = {
     'Hello': Hello(),
 }
 
