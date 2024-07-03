@@ -4,7 +4,6 @@ import movementcalc as calculation
 import numpy as np
 import time
 import cv2
-import websockets
 
 #Distance from BVM to BTP 16.5 inches
 
@@ -155,133 +154,9 @@ def debug_gcs_push_in():
     motor.simMotorRun([98, 225, 260, 47, 272], [0, 1, 2, 3, 4])  # Reset claw looking up
     time.sleep(1)
 
-# def Hello():
-#     start_time = time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(2)
-#     motor.simMotorRun([180,50,265], [3,2,4])
-#     time.sleep(0.1)
-#     motor.simMotorRun([240],[1])
-#     time.sleep(0.1)
-#     motor.simMotorRun([300],[1])
-#     time.sleep(0.1)
-#     motor.simMotorRun([240],[1])
-#     time.sleep(0.1)
-#     motor.simMotorRun([300],[1])
-
-
-
-# def Yes():
-#     start_time=time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(1)
-#     motor.simMotorRun([220,85,265], [3,2,4])
-#     time.sleep(0.2)
-#     motor.simMotorRun([180],[4])
-#     time.sleep(0.2)
-#     motor.simMotorRun([265],[4])
-#     time.sleep(0.2)
-#     motor.simMotorRun([180],[4])
-#     time.sleep(0.2)
-#     motor.simMotorRun([265],[4])
-
-
-
-# def Fistbump():
-#     start_time=time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(1)
-#     motor.simMotorRun([200,80,180],[3,2,4])
-#     motor.dxlSetVelo([55,55,55],[2,3,4])
-#     time.sleep(0.1)
-#     motor.simMotorRun([60,180,172],[2,3,4])
-#     time.sleep(0.3)
-#     motor.simMotorRun([200,80,180],[3,2,4])
-    
-       
-   
-# def Highfive():
-#     start_time=time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(1)
-#     motor.simMotorRun([265,160,40],[4,3,2])
-#     motor.dxlSetVelo([30, 30, 50, 50, 50], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([20,135,245],[2,3,4])
-#     time.sleep(0.2)
-#     motor.simMotorRun([40,160,265],[2,3,4])
-
-
-
-
-# def Handshake():
-#     start_time=time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([40, 40, 40, 40, 40], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(1)
-#     motor.simMotorRun([185,65,180,150],[3,2,0,4])
-#     time.sleep(0.5)
-#     motor.dxlSetVelo([55, 55, 55, 55, 55], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([155,175],[4,3])
-#     time.sleep(0.1)
-#     motor.simMotorRun([195,205],[4,3])
-#     time.sleep(0.1)
-#     motor.simMotorRun([155,175],[4,3])
-#     time.sleep(0.1)
-#     motor.simMotorRun([195,205],[4,3])
-
-
-
-# def Thankyou():
-#     start_time=time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(1)
-#     motor.simMotorRun([90,130,180],[1,2,3])
-#     time.sleep(0.01)
-#     motor.dxlSetVelo([40, 40, 40, 65, 40], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([220],[3])
-#     time.sleep(0.1)
-#     motor.simMotorRun([155],[3])
-#     time.sleep(0.1)
-#     motor.simMotorRun([220],[3])
-#     time.sleep(0.1)
-#     motor.simMotorRun([155],[3])
-#     time.sleep(0.1)
-#     motor.simMotorRun([180],[3])
-
-
-
-# def NoGoodbyeCounting():
-#     start_time=time.time()
-# if __name__ == "__main__":
-#     print("set up move")
-#     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-#     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-#     time.sleep(1)
-#     motor.simMotorRun([220,85,265], [3,2,4])
-
-
-
-def Whatsup():
+def Hello():
     start_time = time.time()
-if __name__ == "__main__":
-    print("set up move")
+    print("Hello")
     motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(2)
@@ -294,6 +169,104 @@ if __name__ == "__main__":
     motor.simMotorRun([240],[1])
     time.sleep(0.1)
     motor.simMotorRun([300],[1])
+
+def Yes():
+    start_time=time.time()
+    print("Yes")
+    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([220,85,265], [3,2,4])
+    time.sleep(0.2)
+    motor.simMotorRun([180],[4])
+    time.sleep(0.2)
+    motor.simMotorRun([265],[4])
+    time.sleep(0.2)
+    motor.simMotorRun([180],[4])
+    time.sleep(0.2)
+    motor.simMotorRun([265],[4])
+
+def Fistbump():
+    start_time=time.time()
+    print("fistbump")
+    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([200,80,180],[3,2,4])
+    motor.dxlSetVelo([55,55,55],[2,3,4])
+    time.sleep(0.1)
+    motor.simMotorRun([60,180,172],[2,3,4])
+    time.sleep(0.3)
+    motor.simMotorRun([200,80,180],[3,2,4])
+    
+def Highfive():
+    start_time=time.time()
+    print("Highfive")
+    motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([265,160,40],[4,3,2])
+    motor.dxlSetVelo([30, 30, 50, 50, 50], [0, 1, 2, 3, 4])
+    motor.simMotorRun([20,135,245],[2,3,4])
+    time.sleep(0.2)
+    motor.simMotorRun([40,160,265],[2,3,4])
+
+def Handshake():
+    start_time=time.time()
+    print("Handshake")
+    motor.dxlSetVelo([40, 40, 40, 40, 40], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([185,65,180,150],[3,2,0,4])
+    time.sleep(0.5)
+    motor.dxlSetVelo([55, 55, 55, 55, 55], [0, 1, 2, 3, 4])
+    motor.simMotorRun([155,175],[4,3])
+    time.sleep(0.1)
+    motor.simMotorRun([195,205],[4,3])
+    time.sleep(0.1)
+    motor.simMotorRun([155,175],[4,3])
+    time.sleep(0.1)
+    motor.simMotorRun([195,205],[4,3])
+
+def Thankyou():
+    start_time=time.time()
+    print("Thank you")
+    motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([90,130,180],[1,2,3])
+    time.sleep(0.01)
+    motor.dxlSetVelo([40, 40, 40, 65, 40], [0, 1, 2, 3, 4])
+    motor.simMotorRun([220],[3])
+    time.sleep(0.1)
+    motor.simMotorRun([155],[3])
+    time.sleep(0.1)
+    motor.simMotorRun([220],[3])
+    time.sleep(0.1)
+    motor.simMotorRun([155],[3])
+    time.sleep(0.1)
+    motor.simMotorRun([180],[3])
+
+def No():
+    start_time=time.time()
+    print("No")
+    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([220,85,265], [3,2,4])
+
+def Goodbye():
+    start_time=time.time()
+    print("Goodbye")
+    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([220,85,265], [3,2,4])
+
+if __name__ == "__main__":
+    print("set up move")
+    motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
 
    
 
