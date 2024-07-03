@@ -118,42 +118,6 @@ void handshake() { //starting open hand
     }
   }
 
-void count_to_5 () { // starting closehand
-  closehand();
-    for (int i=1; i<=60; i++){
-      motorposition[1]++;
-      Servo2.write(motorposition[1]);
-      delay(20);
-    }
-    delay(500);
-    for (int i=1; i<=60; i++){
-      motorposition[2]++;
-      Servo3.write(motorposition[2]);
-      delay(20);
-    }
-    delay(500);
-    for (int i=1; i<=60; i++){
-      motorposition[3]++;
-      Servo4.write(motorposition[3]);
-      delay(20);
-    }
-    delay(500);
-    for (int i=1; i<=60; i++){
-      motorposition[4]++;
-      Servo5.write(motorposition[4]);
-      delay(20);
-    }
-    delay(500);
-    for (int i=1; i<=60; i++){
-      motorposition[0]++;
-      Servo1.write(motorposition[0]);
-      delay(20);
-    }
-  }
-
-//void no () {
-//    
-//  }
 
 void goodbye () { // starting openhand
     for (int i=1; i<=3; i++) {
