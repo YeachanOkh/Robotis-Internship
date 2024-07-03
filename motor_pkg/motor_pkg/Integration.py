@@ -264,22 +264,33 @@ def Goodbye():
     motor.simMotorRun([220,85,265], [3,2,4])
 
 
-def default_response():
-    return "Command not recognized."
 command_dict = {
-    'Hello': Hello,
+    'Hello': Hello(),
+    'Goodbye':Goodbye(),
+    'No':No(),
+    
 }
-def handle_command(command):
-    response_function = command_dict.get(command, default_response)
-    return response_function()
+
+command_library = {
+    "greet": lambda: print("Hello! How can I help you?"),
+    "farewell": lambda: print("Goodbye! Have a great day!"),
+    "help": lambda: print("Available commands: greet, farewell, help"),
+}
+
+def execute_command(command):
+    if command in command_library:
+        command_library[command]()
+    else:
+        print("Invalid command. Please try again.")
+
 def main():
-    print("Type 'Hello' to get a greeting or 'exit' to quit.")
     while True:
-        command = input("Enter command: ").strip()
-        if command == 'exit':
-            print("Exiting the program.")
+        command = input("Enter a command: ")
+        if command == "exit":
+            print("Exiting program.")
             break
-        print(handle_command(command))  
+        execute_command(command)  
+
 if __name__ == "__main__":
     main()
 
