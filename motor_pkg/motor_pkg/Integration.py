@@ -263,16 +263,31 @@ def Goodbye():
     time.sleep(1)
     motor.simMotorRun([220,85,265], [3,2,4])
 
+
+def default_response():
+    return "Command not recognized."
+command_dict = {
+    'Hello': Hello,
+}
+def handle_command(command):
+    response_function = command_dict.get(command, default_response)
+    return response_function()
+def main():
+    print("Type 'Hello' to get a greeting or 'exit' to quit.")
+    while True:
+        command = input("Enter command: ").strip()
+        if command == 'exit':
+            print("Exiting the program.")
+            break
+        print(handle_command(command))  
 if __name__ == "__main__":
-    create user input that can input response
-    case statement that activates function based on the response
-    case ("string")
-        hello:
-            hello()
+    main()
+
+
     
-
-
-
+    
+    
+    
     
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
