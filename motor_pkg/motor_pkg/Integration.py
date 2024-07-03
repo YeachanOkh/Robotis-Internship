@@ -154,9 +154,9 @@ def debug_gcs_push_in():
     motor.simMotorRun([98, 225, 260, 47, 272], [0, 1, 2, 3, 4])  # Reset claw looking up
     time.sleep(1)
 
-def Hello():
+def hello():
     start_time = time.time()
-    print("Hello")
+    print("hello")
     motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(2)
@@ -170,9 +170,9 @@ def Hello():
     time.sleep(0.1)
     motor.simMotorRun([300],[1])
 
-def Yes():
+def yes():
     start_time=time.time()
-    print("Yes")
+    print("yes")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -186,7 +186,7 @@ def Yes():
     time.sleep(0.2)
     motor.simMotorRun([265],[4])
 
-def Fistbump():
+def fistbump():
     start_time=time.time()
     print("fistbump")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
@@ -199,9 +199,9 @@ def Fistbump():
     time.sleep(0.3)
     motor.simMotorRun([200,80,180],[3,2,4])
     
-def Highfive():
+def highfive():
     start_time=time.time()
-    print("Highfive")
+    print("highfive")
     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -211,9 +211,9 @@ def Highfive():
     time.sleep(0.2)
     motor.simMotorRun([40,160,265],[2,3,4])
 
-def Handshake():
+def handshake():
     start_time=time.time()
-    print("Handshake")
+    print("handshake")
     motor.dxlSetVelo([40, 40, 40, 40, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -228,9 +228,9 @@ def Handshake():
     time.sleep(0.1)
     motor.simMotorRun([195,205],[4,3])
 
-def Thankyou():
+def thankyou():
     start_time=time.time()
-    print("Thank you")
+    print("thank you")
     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -247,17 +247,25 @@ def Thankyou():
     time.sleep(0.1)
     motor.simMotorRun([180],[3])
 
-def No():
+def no():
     start_time=time.time()
-    print("No")
+    print("no")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
     motor.simMotorRun([220,85,265], [3,2,4])
 
-def Goodbye():
+def goodbye():
     start_time=time.time()
-    print("Goodbye")
+    print("goodbye")
+    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    time.sleep(1)
+    motor.simMotorRun([220,85,265], [3,2,4])
+
+def counting():
+    start_time=time.time()
+    print("counting")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -265,14 +273,15 @@ def Goodbye():
 
 
 Command_dict = {
-    "Hello": Hello,
-    "No": No,
-    "Thankyou": Thankyou,
-    "Handshake": Handshake,
-    "Highfive": Highfive,
-    "Goodbye": Goodbye,
-    "Yes": Yes,
-    "Fistbump": Fistbump,
+    "hello": hello,
+    "no": no,
+    "thankyou": thankyou,
+    "handshake": handshake,
+    "highfive": highfive,
+    "goodbye": goodbye,
+    "yes": yes,
+    "fistbump": fistbump,
+    "counting": counting,
 }
 
 def execute_command(command):
