@@ -294,36 +294,6 @@ if __name__ == "__main__":
 
 
     
-command_dict = {
-    'No': No(),
-
-}
-
-def main():
-    while True:
-        command = input("Enter a command: ")
-        if command == "exit":
-            print("Exiting program.")
-            break
-        execute_command(command) 
-
-
-command_library = {
-    "greet": lambda: print("Hello! How can I help you?"),
-    "farewell": lambda: print("Goodbye! Have a great day!"),
-    "help": lambda: print("Available commands: greet, farewell, help"),
-}
-
-def execute_command(command):
-    if command in command_library:
-        command_library[command]()
-    else:
-        print("Invalid command. Please try again.")
-
-  
-
-if __name__ == "__main__":
-    main()
 
 
     
