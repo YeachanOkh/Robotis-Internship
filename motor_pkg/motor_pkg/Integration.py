@@ -264,6 +264,16 @@ def Goodbye():
     motor.simMotorRun([220,85,265], [3,2,4])
 
 if __name__ == "__main__":
+    create user input that can input response
+    case statement that activates function based on the response
+    case ("string")
+        hello:
+            hello()
+    
+
+
+
+    
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
