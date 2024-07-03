@@ -266,7 +266,6 @@ def Goodbye():
 
 command_dict = {
     'Hello': Hello(),
-
 }
 
 command_library = {
