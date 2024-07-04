@@ -8,7 +8,7 @@ mp_holistic = mp.solutions.holistic  # Holistic model
 mp_drawing = mp.solutions.drawing_utils  # Drawing utilities
 
 DATA_PATH = os.path.join('MP_Data')  # Path for exported data, numpy arrays
-actions = np.array(['hello', 'thanks', 'iloveyou'])  # Actions that we try to detect
+actions = np.array(['Good Job', 'Hello', 'Fist Bump', 'High Five'])# 'Hungry', 'Thirsty', 'Congrats', "What's up", "I'm Fine", 'Take Care'])  # Actions that we try to detect
 no_sequences = 30  # Thirty videos worth of data
 sequence_length = 30  # Videos are going to be 30 frames in length
 
