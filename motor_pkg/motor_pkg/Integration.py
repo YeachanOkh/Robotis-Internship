@@ -4,7 +4,7 @@ import movementcalc as calculation
 import numpy as np
 import time
 import cv2
-
+import rasptoarduino as hand
 #Distance from BVM to BTP 16.5 inches
 
 BASE_ID = 1
@@ -154,9 +154,9 @@ def debug_gcs_push_in():
     motor.simMotorRun([98, 225, 260, 47, 272], [0, 1, 2, 3, 4])  # Reset claw looking up
     time.sleep(1)
 
-def hello():
+def Hello():
     start_time = time.time()
-    print("hello")
+    print("Hello")
     motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(2)
@@ -170,9 +170,11 @@ def hello():
     time.sleep(0.1)
     motor.simMotorRun([300],[1])
 
-def yes():
+    hand.handmotor("hello")
+
+def Yes():
     start_time=time.time()
-    print("yes")
+    print("Yes")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -186,7 +188,9 @@ def yes():
     time.sleep(0.2)
     motor.simMotorRun([265],[4])
 
-def fistbump():
+    hand.handmotor("Yes")
+
+def Fistbump():
     start_time=time.time()
     print("fistbump")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
@@ -198,10 +202,12 @@ def fistbump():
     motor.simMotorRun([60,180,172],[2,3,4])
     time.sleep(0.3)
     motor.simMotorRun([200,80,180],[3,2,4])
+
+    hand.handmotor("fistbump")
     
-def highfive():
+def Highfive():
     start_time=time.time()
-    print("highfive")
+    print("Highfive")
     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -211,9 +217,11 @@ def highfive():
     time.sleep(0.2)
     motor.simMotorRun([40,160,265],[2,3,4])
 
-def handshake():
+    hand.handmotor("highfive")
+
+def Handshake():
     start_time=time.time()
-    print("handshake")
+    print("Handshake")
     motor.dxlSetVelo([40, 40, 40, 40, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -228,9 +236,11 @@ def handshake():
     time.sleep(0.1)
     motor.simMotorRun([195,205],[4,3])
 
-def thankyou():
+    hand.handmotor("handshake")
+
+def Thankyou():
     start_time=time.time()
-    print("thank you")
+    print("Thank you")
     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
@@ -247,52 +257,32 @@ def thankyou():
     time.sleep(0.1)
     motor.simMotorRun([180],[3])
 
-def no():
+    hand.handmotor("thank you")
+
+def No():
     start_time=time.time()
-    print("no")
+    print("No")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
     motor.simMotorRun([220,85,265], [3,2,4])
 
-def goodbye():
+    hand.handmotor("no")
+
+def Goodbye():
     start_time=time.time()
-    print("goodbye")
+    print("Goodbye")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
     time.sleep(1)
     motor.simMotorRun([220,85,265], [3,2,4])
 
-Command_dict = {
-    "hello": hello,
-    "no": no,
-    "thankyou": thankyou,
-    "handshake": handshake,
-    "highfive": highfive,
-    "goodbye": goodbye,
-    "yes": yes,
-    "fistbump": fistbump,
-}
-
-def execute_command(command):
-    if command in Command_dict:
-        Command_dict[command]()
-    else:
-        print("Invalid command. Please try again.")
-
-def main():
-    while True:
-        command = input("Enter a command: ")
-        if command == "exit":
-            print("Exiting program.")
-            break
-        execute_command(command)  
-        print("starting position")
-        motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
-        motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
+    hand.handmotor("goodbye")
 
 if __name__ == "__main__":
-    main()
+    print("set up move")
+    motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
+    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
 
    
 

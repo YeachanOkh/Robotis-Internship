@@ -164,15 +164,7 @@ void goodbye() { // starting openhand
 void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
-    Serial.print("You sent me: ");
+    Serial.print("You sent me: " + data);
     Serial.println(data);
-    for (int i=0; i<60; i++){
-      Servo1.write(60-i);
-      delay(20);
-    }
-    for (int i=0; i<60; i++){
-      Servo1.write(i);
-      delay(20);
-    }
   }
 }
