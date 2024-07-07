@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import math
 import Motorcontrol as motor
 import movementcalc as calculation
@@ -5,14 +6,14 @@ import numpy as np
 import time
 import cv2
 import rasptoarduino as hand
-#Distance from BVM to BTP 16.5 inches
+import rclpy
+from rclpy.node import Node
 
 BASE_ID = 1
 BICEP_ID = 2
 FOREARM_ID = 3
 WRIST_ID = 4
 CLAW_ID = 0
-
 
 PORT_NUM = '/dev/ttyUSB0'  # for rpi
 MOVEARM_MODE = 1
@@ -28,6 +29,9 @@ motor.portInitialization(PORT_NUM, ALL_IDs)
 max_length_angle = calculation.angle_Calc([375, 0, 73], 0)
 
 #"[%s, %s, %s, %s]" % (int(baseTheta), int(shoulderTheta), int(elbowTheta), int(wristTheta))
+class MyNode(Node):
+    def __init__(self):
+        super().__init__("robotic_arm")
 
 def checkMovement(ids):
     motorStatus = [0] * len(ids)
@@ -50,8 +54,6 @@ def Hello():
     start_time = time.time()
     print("Hello")
     motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(2)
     motor.simMotorRun([180,50,265], [3,2,4])
     time.sleep(0.1)
     motor.simMotorRun([240],[1])
@@ -68,8 +70,6 @@ def Yes():
     start_time=time.time()
     print("Yes")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
     motor.simMotorRun([220,85,265], [3,2,4])
     time.sleep(0.2)
     motor.simMotorRun([180],[4])
@@ -86,8 +86,6 @@ def Fistbump():
     start_time=time.time()
     print("fistbump")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
     motor.simMotorRun([200,80,180],[3,2,4])
     motor.dxlSetVelo([55,55,55],[2,3,4])
     time.sleep(0.1)
@@ -101,8 +99,6 @@ def Highfive():
     start_time=time.time()
     print("Highfive")
     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
     motor.simMotorRun([265,160,40],[4,3,2])
     motor.dxlSetVelo([30, 30, 50, 50, 50], [0, 1, 2, 3, 4])
     motor.simMotorRun([20,135,245],[2,3,4])
@@ -115,8 +111,6 @@ def Handshake():
     start_time=time.time()
     print("Handshake")
     motor.dxlSetVelo([40, 40, 40, 40, 40], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
     motor.simMotorRun([185,65,180,150],[3,2,0,4])
     time.sleep(0.5)
     motor.dxlSetVelo([55, 55, 55, 55, 55], [0, 1, 2, 3, 4])
@@ -134,8 +128,6 @@ def Thankyou():
     start_time=time.time()
     print("Thank you")
     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
     motor.simMotorRun([90,130,180],[1,2,3])
     time.sleep(0.01)
     motor.dxlSetVelo([40, 40, 40, 65, 40], [0, 1, 2, 3, 4])
@@ -155,8 +147,6 @@ def No():
     start_time=time.time()
     print("No")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
     motor.simMotorRun([220,85,265], [3,2,4])
 
     hand.handmotor("no")
@@ -165,14 +155,20 @@ def Goodbye():
     start_time=time.time()
     print("Goodbye")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
-    time.sleep(1)
     motor.simMotorRun([220,85,265], [3,2,4])
 
     hand.handmotor("goodbye")
 
-if __name__ == "__main__":
+def startsetup():
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
 
+def main(args=None):
+    rclpy.init(args=args)
+    node=MyNode()
+
+    rclpy.shutdown()
+
+if __name__=='__main__':
+    main()
