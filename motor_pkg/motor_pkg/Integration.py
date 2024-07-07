@@ -6,8 +6,8 @@ import numpy as np
 import time
 import cv2
 import rasptoarduino as hand
-import rclpy
-from rclpy.node import Node
+# import rclpy
+# from rclpy.node import Node
 
 BASE_ID = 1
 BICEP_ID = 2
@@ -29,9 +29,10 @@ motor.portInitialization(PORT_NUM, ALL_IDs)
 max_length_angle = calculation.angle_Calc([375, 0, 73], 0)
 
 #"[%s, %s, %s, %s]" % (int(baseTheta), int(shoulderTheta), int(elbowTheta), int(wristTheta))
-class MyNode(Node):
-    def __init__(self):
-        super().__init__("robotic_arm")
+
+# class MyNode(Node):
+#     def __init__(self):
+#         super().__init__("robotic_arm")
 
 def checkMovement(ids):
     motorStatus = [0] * len(ids)
@@ -176,8 +177,8 @@ Command_dict = {
 }
 
 def main(args=None):
-    rclpy.init(args=args)
-    node=MyNode()
+    # rclpy.init(args=args)
+    # node=MyNode()
     while True:
         command = input("Enter a command: ")
         startsetup()
@@ -189,7 +190,7 @@ def main(args=None):
         if command == "exit":
             print("Exiting program.")
             break
-    rclpy.shutdown()
+    # rclpy.shutdown()
 
 if __name__=='__main__':
     main()
