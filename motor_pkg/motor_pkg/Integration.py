@@ -164,11 +164,31 @@ def startsetup():
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
 
+Command_dict = {
+    "Hello": Hello,
+    "No": No,
+    "Thankyou": Thankyou,
+    "Handshake": Handshake,
+    "Highfive": Highfive,
+    "Goodbye": Goodbye,
+    "Yes": Yes,
+    "Fistbump": Fistbump,
+}
 
 def main(args=None):
     rclpy.init(args=args)
     node=MyNode()
-    #case statement 
+    while True:
+        command = input("Enter a command: ")
+        startsetup()
+        if command in Command_dict:
+            Command_dict[command]()
+        else:
+            print("Invalid command. Please try again.")
+        startsetup()
+        if command == "exit":
+            print("Exiting program.")
+            break
     rclpy.shutdown()
 
 if __name__=='__main__':
