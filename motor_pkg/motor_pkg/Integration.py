@@ -181,15 +181,15 @@ def main(args=None):
     # node=MyNode()
     while True:
         command = input("Enter a command: ")
-        startsetup()
         if command in Command_dict:
+            startsetup()
             Command_dict[command]()
-        else:
-            print("Invalid command. Please try again.")
-        startsetup()
-        if command == "exit":
+            startsetup()
+        elif command == "exit":
             print("Exiting program.")
             break
+        else:
+            print("Invalid command. Please try again.")
     # rclpy.shutdown()
 
 if __name__=='__main__':
