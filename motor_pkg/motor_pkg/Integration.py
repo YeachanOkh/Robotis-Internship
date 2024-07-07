@@ -164,10 +164,11 @@ def startsetup():
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90,270,140,265,180], [0,1,2,3,4])
 
+
 def main(args=None):
     rclpy.init(args=args)
     node=MyNode()
-
+    #case statement 
     rclpy.shutdown()
 
 if __name__=='__main__':
