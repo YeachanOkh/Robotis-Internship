@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-
-# Import necessary libraries and modules
 import math
 import Motorcontrol as motor
 import movementcalc as calculation
