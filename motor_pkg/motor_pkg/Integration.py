@@ -161,14 +161,14 @@ def startsetup():
 
 # Dictionary mapping commands to functions
 Command_dict = {
-    "Hello": Hello,
-    "No": No,
-    "Thankyou": Thankyou,
-    "Handshake": Handshake,
-    "Highfive": Highfive,
-    "Goodbye": Goodbye,
-    "Yes": Yes,
-    "Fistbump": Fistbump,
+    "hello": Hello,
+    "no": No,
+    "thankyou": Thankyou,
+    "handshake": Handshake,
+    "highfive": Highfive,
+    "goodbye": Goodbye,
+    "yes": Yes,
+    "fistbump": Fistbump,
 }
 
 def main(args=None):
