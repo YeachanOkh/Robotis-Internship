@@ -58,14 +58,14 @@ def Hello():
     motor.dxlSetVelo([30, 55, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([180, 50, 265], [3, 2, 4])
     time.sleep(0.1)
-    motor.simMotorRun([240], [1])
-    time.sleep(0.1)
-    motor.simMotorRun([300], [1])
-    time.sleep(0.1)
-    motor.simMotorRun([240], [1])
-    time.sleep(0.1)
-    motor.simMotorRun([300], [1])
     hand.handmotor("hello")
+    motor.simMotorRun([240], [1])
+    time.sleep(0.1)
+    motor.simMotorRun([300], [1])
+    time.sleep(0.1)
+    motor.simMotorRun([240], [1])
+    time.sleep(0.1)
+    motor.simMotorRun([300], [1])
 
 def Yes():
     start_time = time.time()
@@ -161,14 +161,14 @@ def startsetup():
 
 # Dictionary mapping commands to functions
 Command_dict = {
-    "Hello": Hello,
-    "No": No,
-    "Thankyou": Thankyou,
-    "Handshake": Handshake,
-    "Highfive": Highfive,
-    "Goodbye": Goodbye,
-    "Yes": Yes,
-    "Fistbump": Fistbump,
+    "hello": Hello,
+    "no": No,
+    "thankyou": Thankyou,
+    "handshake": Handshake,
+    "highfive": Highfive,
+    "goodbye": Goodbye,
+    "yes": Yes,
+    "fistbump": Fistbump,
 }
 
 def main(args=None):
