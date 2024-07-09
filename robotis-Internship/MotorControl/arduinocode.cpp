@@ -176,8 +176,7 @@ void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
     if (Command_dict.find(data) != Command_dict.end()) {
-      Serial.print("You sent me: ");
-      Serial.println(data);
+      Serial.print("You sent me: "+data);
       Command_dict[data]();
     } else {
       Serial.println("Command not found");
