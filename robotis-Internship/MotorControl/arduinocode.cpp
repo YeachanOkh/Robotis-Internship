@@ -11,7 +11,7 @@ const int motor2 = 5; //index
 const int motor3 = 6; //middle
 const int motor4 = 9; //ring finger
 const int motor5 = 10; //pinky
-int motorposition[5] = {60,60,60,60,60}; // M1, M2, M3, M4, M5
+int motorposition[5] = {0,0,0,0,0}; // M1, M2, M3, M4, M5
 
 void setup() {
   Servo1.attach(motor1);
@@ -143,7 +143,7 @@ void no () {
     }
   }
 
-void goodbye() { // starting openhand
+void goodbye () { // starting openhand
     for (int i=1; i<=3; i++) {
       openhand();
       for (int i=1; i<=60; i++) {
@@ -164,7 +164,19 @@ void goodbye() { // starting openhand
 void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
-    Serial.print("You sent me: " + data);
+    Serial.print("You sent me: ");
     Serial.println(data);
+    for (int i=0; i<55; i++){
+      motorposition[0]++;
+
+      Servo1.write(motorposition[0]);
+
+      delay(20);
+    }
+    for (int i=0; i<55; i++){
+      motorposition[0]--;
+      Servo1.write(motorposition[0]);
+      delay(20);
+    }
   }
 }
