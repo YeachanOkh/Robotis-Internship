@@ -160,23 +160,39 @@ void goodbye () { // starting openhand
     }
     openhand();
   }
+// Dictionary mapping commands to functions
+std::unordered_map<String, std::function<void()>> Command_dict = {
+    {"hello", hello},
+    {"no", no},
+    {"thankyou", openhand},
+    {"handshake", handshake},
+    {"highfive", openhand},
+    {"goodbye", goodbye},
+    {"yes", closehand},
+    {"fistbump", closehand}
+};
 
 void loop() {
   if (Serial.available() > 0) {
     String data = Serial.readStringUntil('\n');
-    Serial.print("You sent me: ");
-    Serial.println(data);
-    for (int i=0; i<55; i++){
-      motorposition[0]++;
-
-      Servo1.write(motorposition[0]);
-
-      delay(20);
+    if (Command_dict.find(data) != Command_dict.end()) {
+      Serial.print("You sent me: ");
+      Serial.println(data);
+      Command_dict[data]();
+    } else {
+      Serial.println("Command not found");
     }
-    for (int i=0; i<55; i++){
-      motorposition[0]--;
-      Servo1.write(motorposition[0]);
-      delay(20);
-    }
+    // for (int i=0; i<55; i++){
+    //   motorposition[0]++;
+      
+    //   Servo1.write(motorposition[0]);
+      
+    //   delay(20);
+    // }
+    // for (int i=0; i<55; i++){
+    //   motorposition[0]--;
+    //   Servo1.write(motorposition[0]);
+    //   delay(20);
+    // }
   }
 }
