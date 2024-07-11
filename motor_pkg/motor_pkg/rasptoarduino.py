@@ -9,7 +9,6 @@ def handmotor(response):
     ser.write(changetobyte)
     line = ser.readline().decode('utf-8').rstrip()
     print(line)
-    time.sleep(5)
 
 if __name__ == '__main__':
     handmotor()
