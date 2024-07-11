@@ -9,7 +9,7 @@ from sklearn.metrics import multilabel_confusion_matrix, accuracy_score
 
 def main():
     DATA_PATH = os.path.join('MP_Data')
-    actions = np.array(['Good Job', 'Hello', 'Fist Bump', 'High Five', 'Hungry', 'Thirsty'])  # Actions that we try to detect
+    actions = np.array(['Good Job', 'Hello', 'Fist Bump', 'High Five'])  # Actions that we try to detect
     sequence_length = 30
 
     label_map = {label: num for num, label in enumerate(actions)}
@@ -39,7 +39,7 @@ def main():
     model.add(Dense(actions.shape[0], activation='softmax'))
 
     model.compile(optimizer='Adam', loss='categorical_crossentropy', metrics=['categorical_accuracy'])
-    model.fit(X_train, y_train, epochs=500, callbacks=[tb_callback])
+    model.fit(X_train, y_train, epochs=800, callbacks=[tb_callback])
     model.save('action.h5')
 
     yhat = model.predict(X_test)

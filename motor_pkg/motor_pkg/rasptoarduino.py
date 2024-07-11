@@ -3,7 +3,6 @@ import serial
 import time
 
 def handmotor(response):
-    print("communication to move hand\n")
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     ser.reset_input_buffer()
     changetobyte=response.encode(encoding="utf-8") 
