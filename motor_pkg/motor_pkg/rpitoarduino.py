@@ -8,4 +8,4 @@ if __name__ == '__main__':
         ser.write(b"Hello from Raspberry Pi!\n")
         line = ser.readline().decode('utf-8').rstrip()
         print(line)
-        time.sleep(1) 
+        time.sleep(1)
