@@ -25,6 +25,7 @@ void setup() {
 }
 
 void closehand() { // fistbump, yes
+  Serial.println("closehand activated");
   for (int i = 1; i <= 60; i++) {
     if (motorposition[0] > 0) {
       motorposition[0]--;
@@ -55,6 +56,7 @@ void closehand() { // fistbump, yes
 }
 
 void openhand() { // high five, thank you
+  Serial.println("openhand activated");
   for (int i = 1; i <= 60; i++) {
     if (motorposition[0] < 60) {
       motorposition[0]++;
@@ -85,6 +87,7 @@ void openhand() { // high five, thank you
 }
 
 void hello() { // starting open hand
+  Serial.println("hello activated");
   openhand();
   for (int i = 1; i <= 60; i++) { // thumb moving 60
     motorposition[0]--;
@@ -94,6 +97,7 @@ void hello() { // starting open hand
 }
 
 void handshake() { // starting open hand
+  Serial.println("handshake activated");
   openhand();
   for (int i = 1; i <= 60; i++) {
     if (i % 3 == 0) { // thumb moving 20
@@ -121,6 +125,7 @@ void handshake() { // starting open hand
 }
 
 void no() {
+  Serial.println("no activated");
   openhand();
   for (int i = 1; i <= 60; i++) {
     if (i % 2 == 0) { // thumb moving 30
@@ -146,6 +151,7 @@ void no() {
 }
 
 void goodbye() { // starting openhand
+  Serial.println("goodbye activated");
   for (int i = 1; i <= 3; i++) {
     openhand();
     for (int i = 1; i <= 60; i++) {
@@ -166,28 +172,20 @@ void goodbye() { // starting openhand
 void switchstatement(String data) {
   data.trim(); // Remove any leading or trailing whitespace
   if (data == "hello") {
-    Serial.println("hello activated");
     hello();
   } else if (data == "no") {
-    Serial.println("no activated");
     no();
   } else if (data == "thankyou") {
-    Serial.println("thankyou activated");
     openhand();
   } else if (data == "highfive") {
-    Serial.println("highfive activated");
     openhand();
   } else if (data == "handshake") {
-    Serial.println("handshake activated");
     handshake();
   } else if (data == "goodbye") {
-    Serial.println("goodbye activated");
     goodbye();
   } else if (data == "yes") {
-    Serial.println("yes activated");
     closehand();
   } else if (data == "fistbump") {
-    Serial.println("fistbump activated");
     closehand();
   } else {
     Serial.println("did not execute");
