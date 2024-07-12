@@ -14,6 +14,6 @@ def handmotor(response):
         line = ser.readline().decode('utf-8').rstrip()
         print(line)
         ser.reset_input_buffer()
-
+    time.sleep(5)
 if __name__ == '__main__':
     handmotor("hello")  # Example command, replace "hello" with the desired command
