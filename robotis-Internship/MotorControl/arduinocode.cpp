@@ -197,5 +197,6 @@ void loop() {
     String data = Serial.readString();
     Serial.println("You sent me: " + data);
     switchstatement(data);
+    Serial.println("finished");
   }
 }
