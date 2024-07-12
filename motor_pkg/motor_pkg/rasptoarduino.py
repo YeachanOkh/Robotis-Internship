@@ -8,8 +8,8 @@ def handmotor(response):
     ser.write(changetobyte)
     line = ser.readline().decode('utf-8').rstrip()
     print(line)
-    ser.reset_input_buffer()
     time.sleep(8)
+    ser.reset_input_buffer()
 
 if __name__ == '__main__':
     handmotor()
