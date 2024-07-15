@@ -80,7 +80,7 @@ def Yes():
     motor.simMotorRun([180], [4])
     time.sleep(0.2)
     motor.simMotorRun([265], [4])
-    hand.handmotor("Yes")
+    hand.handmotor("yes")
 
 def Fistbump():
     start_time = time.time()
