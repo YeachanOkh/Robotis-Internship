@@ -1,14 +1,10 @@
 #!/usr/bin/env python3
-import rclpy
-from rclpy.node import Node
+
 import cv2
 import numpy as np
 import mediapipe as mp
 import pyrealsense2 as rs
 import time
-class MyNode(Node):
-    def __init__(self):
-        super().__init__("camera_node")
 
 def handdetect():
     # Initialize MediaPipe hands and drawing modules
@@ -17,10 +13,10 @@ def handdetect():
 
     # Initialize hands module with some parameters 
     hands = mp_hands.Hands(
-    static_image_mode=False,
-    max_num_hands=2,
-    min_detection_confidence=0.5,
-    min_tracking_confidence=0.5
+        static_image_mode=False,
+        max_num_hands=2,
+        min_detection_confidence=0.5,
+        min_tracking_confidence=0.5
     )
 
     # Initialize RealSense pipeline
@@ -56,18 +52,14 @@ def handdetect():
             # Process the image and find hands
             results = hands.process(image_rgb)
 
-            #Drawing bounding box around the hand
-
-
-
             # Draw hand landmarks and extract the coordinates of landmark 0
             if results.multi_hand_landmarks:
-                for hand_landmarks, hand_world_landmarks in zip (results.multi_hand_landmarks, results.multi_handedness):
+                for hand_landmarks, hand_world_landmarks in zip(results.multi_hand_landmarks, results.multi_handedness):
                     # Draw landmarks
                     mp_drawing.draw_landmarks(color_image, hand_landmarks, mp_hands.HAND_CONNECTIONS)
 
-                    #Coordinates for the bounding box
-                    margin = 20 # Adjust this value to control the margin around the hand
+                    # Coordinates for the bounding box
+                    margin = 20  # Adjust this value to control the margin around the hand
                     x_min = y_min = float('inf')
                     x_max = y_max = float('-inf')
                     for landmark in hand_landmarks.landmark:
@@ -128,10 +120,7 @@ def handdetect():
         hands.close()
 
 def main(args=None):
-    rclpy.init(args=args)
-    node=MyNode()
     handdetect()
-    rclpy.shutdown()
 
-if __name__=='__main__':
+if __name__ == '__main__':
     main()

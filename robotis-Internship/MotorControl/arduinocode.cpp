@@ -25,7 +25,6 @@ void setup() {
 }
 
 void closehand() { // fistbump, yes
-  Serial.println("closehand activated");
   for (int i = 1; i <= 60; i++) {
     if (motorposition[0] > 0) {
       motorposition[0]--;
@@ -56,7 +55,6 @@ void closehand() { // fistbump, yes
 }
 
 void openhand() { // high five, thank you
-  Serial.println("openhand activated");
   for (int i = 1; i <= 60; i++) {
     if (motorposition[0] < 60) {
       motorposition[0]++;
@@ -87,7 +85,6 @@ void openhand() { // high five, thank you
 }
 
 void hello() { // starting open hand
-  Serial.println("hello activated");
   openhand();
   for (int i = 1; i <= 60; i++) { // thumb moving 60
     motorposition[0]--;
@@ -97,7 +94,6 @@ void hello() { // starting open hand
 }
 
 void handshake() { // starting open hand
-  Serial.println("handshake activated");
   openhand();
   for (int i = 1; i <= 60; i++) {
     if (i % 3 == 0) { // thumb moving 20
@@ -125,7 +121,6 @@ void handshake() { // starting open hand
 }
 
 void no() {
-  Serial.println("no activated");
   openhand();
   for (int i = 1; i <= 60; i++) {
     if (i % 2 == 0) { // thumb moving 30
@@ -151,7 +146,6 @@ void no() {
 }
 
 void goodbye() { // starting openhand
-  Serial.println("goodbye activated");
   for (int i = 1; i <= 3; i++) {
     openhand();
     for (int i = 1; i <= 60; i++) {
@@ -197,6 +191,5 @@ void loop() {
     String data = Serial.readString();
     Serial.println("You sent me: " + data);
     switchstatement(data);
-    Serial.println("finished");
   }
 }
