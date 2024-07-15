@@ -2,8 +2,9 @@ import cv2
 import numpy as np
 import mediapipe as mp
 from tensorflow.keras.models import load_model
-from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints
+from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints, get_depth_at_landmark
 from data_preparation import actions
+import pyrealsense2 as rs
 
 # Load the model
 model = load_model('action.h5')
@@ -11,6 +12,12 @@ model = load_model('action.h5')
 # Initialize MediaPipe holistic model
 mp_holistic = mp.solutions.holistic  # Holistic model
 mp_drawing = mp.solutions.drawing_utils  # Drawing utilities
+
+# Initialize RealSense pipeline
+pipeline = rs.pipeline()
+config = rs.config()
+config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+pipeline.start(config)
 
 def prob_viz(res, actions, input_frame):
     output_frame = input_frame.copy()
@@ -54,7 +61,20 @@ else:
             draw_styled_landmarks(image, results)
 
             # Extract keypoints
-            keypoints = extract_keypoints(results)
+            depth_frame = pipeline.wait_for_frames().get_depth_frame()
+            keypoints = extract_keypoints(results, depth_frame, frame.shape)
+            
+            # Print wrist landmarks distances
+            if results.left_hand_landmarks:
+                left_wrist = results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
+                left_wrist_distance = get_depth_at_landmark(depth_frame, int(left_wrist.x * frame.shape[1]), int(left_wrist.y * frame.shape[0]))
+                print(f"Left Wrist Distance: {left_wrist_distance} meters")
+            
+            if results.right_hand_landmarks:
+                right_wrist = results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
+                right_wrist_distance = get_depth_at_landmark(depth_frame, int(right_wrist.x * frame.shape[1]), int(right_wrist.y * frame.shape[0]))
+                print(f"Right Wrist Distance: {right_wrist_distance} meters")
+
             sequence.append(keypoints)
             sequence = sequence[-30:]
 
@@ -70,4 +90,5 @@ else:
                 break
 
     cap.release()
+pipeline.stop()
 cv2.destroyAllWindows()
