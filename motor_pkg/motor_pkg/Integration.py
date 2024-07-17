@@ -126,6 +126,8 @@ def Thankyou():
     print("Thank you")
     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([130,180,180],[2,4,3])
+    time.sleep(0.01)
+    motor.simMotorRun([220],[3])
 
     hand.handmotor("thank you")
 
