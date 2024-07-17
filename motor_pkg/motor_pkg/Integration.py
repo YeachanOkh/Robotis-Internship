@@ -125,7 +125,11 @@ def Thankyou():
     start_time = time.time()
     print("Thank you")
     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
-    motor.simMotorRun([130,180,180],[2,4,3])
+    motor.simMotorRun([130,180],[2,3])
+    time.sleep(0.01)
+    motor.simMotorRun([180],[4])
+    time.sleep(0.01)
+    motor.simMotorRun([230],[3])
     
 
     hand.handmotor("thank you")
