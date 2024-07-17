@@ -124,12 +124,18 @@ def Handshake():
 def Thankyou():
     start_time = time.time()
     print("Thank you")
-    motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([60, 60, 60, 60, 60], [0, 1, 2, 3, 4])
     motor.simMotorRun([130,180],[2,3])
     time.sleep(0.01)
     motor.simMotorRun([180],[4])
     time.sleep(0.01)
     motor.simMotorRun([230],[3])
+    time.sleep(0.01)
+    motor.simMotorRun([180],[3])
+    time.sleep(0.01)
+    motor.simMotorRun([230],[3])
+    time.sleep(0.01)
+    motor.simMotorRun([180],[3])
     
 
     hand.handmotor("thank you")
