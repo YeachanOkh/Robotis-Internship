@@ -127,7 +127,7 @@ def Thankyou():
     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([240], [3])
     time.sleep(0.01)
-    motor.simMotorRun([130, 360], [2, 1])
+    motor.simMotorRun([130, 380], [2, 1])
     time.sleep(0.01)
     motor.simMotorRun([180],[3])
     time.sleep(0.01)
