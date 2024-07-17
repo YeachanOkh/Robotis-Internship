@@ -159,8 +159,8 @@ def Goodbye():
 def startsetup():
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90, 270, 133, 265, 267], [0, 1, 2, 3, 4])
-    time.sleep(3)
+    motor.simMotorRun([90, 270, 133, 265, 265], [0, 1, 2, 3, 4])
+    time.sleep(1)
 
 # Dictionary mapping commands to functions
 Command_dict = {
