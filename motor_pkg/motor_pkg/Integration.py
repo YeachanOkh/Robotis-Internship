@@ -65,8 +65,6 @@ def Hello():
     motor.simMotorRun([260], [1])
     time.sleep(0.1)
     motor.simMotorRun([280], [1])
-    time.sleep(0.1)
-    motor.simMotorRun([270],[1])
     hand.handmotor("hello")
 
 def Yes():
@@ -82,7 +80,7 @@ def Yes():
     motor.simMotorRun([180], [4])
     time.sleep(0.2)
     motor.simMotorRun([265], [4])
-    hand.handmotor("Yes")
+    hand.handmotor("yes")
 
 def Fistbump():
     start_time = time.time()
@@ -159,8 +157,8 @@ def Goodbye():
 def startsetup():
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
-    motor.simMotorRun([90, 270, 133, 265, 265], [0, 1, 2, 3, 4])
-    time.sleep(1)
+    motor.simMotorRun([90, 270, 140, 265, 270], [0, 1, 2, 3, 4])
+    time.sleep(3)
 
 # Dictionary mapping commands to functions
 Command_dict = {

@@ -13,7 +13,9 @@ const int motor2 = 5; // index
 const int motor3 = 6; // middle
 const int motor4 = 9; // ring finger
 const int motor5 = 10; // pinky
-int motorposition[5] = {0, 0, 0, 0, 0}; // M1, M2, M3, M4, M5
+int maxAngle = 90;
+int minAngle = maxAngle - 60;
+int motorposition[5] = {maxAngle, maxAngle, maxAngle, maxAngle, maxAngle}; // M1, M2, M3, M4, M5
 
 void setup() {
   Servo1.attach(motor1);
@@ -26,28 +28,28 @@ void setup() {
 
 void closehand() { // fistbump, yes
   for (int i = 1; i <= 60; i++) {
-    if (motorposition[0] > 0) {
+    if (motorposition[0] > minAngle) {
       motorposition[0]--;
       Servo1.write(motorposition[0]);
     }
-    if (motorposition[1] > 0) {
+    if (motorposition[1] > minAngle) {
       motorposition[1]--;
       Servo2.write(motorposition[1]);
     }
-    if (motorposition[2] > 0) {
+    if (motorposition[2] > minAngle) {
       motorposition[2]--;
       Servo3.write(motorposition[2]);
     }
-    if (motorposition[3] > 0) {
+    if (motorposition[3] > minAngle) {
       motorposition[3]--;
       Servo4.write(motorposition[3]);
     }
-    if (motorposition[4] > 0) {
+    if (motorposition[4] > minAngle) {
       motorposition[4]--;
       Servo5.write(motorposition[4]);
     }
-    if (motorposition[0] == 0 && motorposition[1] == 0 && motorposition[2] == 0 &&
-        motorposition[3] == 0 && motorposition[4] == 0) {
+    if (motorposition[0] == minAngle && motorposition[1] == minAngle && motorposition[2] == minAngle &&
+        motorposition[3] == minAngle && motorposition[4] == minAngle) {
       break;
     }
     delay(20);
@@ -56,28 +58,28 @@ void closehand() { // fistbump, yes
 
 void openhand() { // high five, thank you
   for (int i = 1; i <= 60; i++) {
-    if (motorposition[0] < 60) {
+    if (motorposition[0] < maxAngle) {
       motorposition[0]++;
       Servo1.write(motorposition[0]);
     }
-    if (motorposition[1] < 60) {
+    if (motorposition[1] < maxAngle) {
       motorposition[1]++;
       Servo2.write(motorposition[1]);
     }
-    if (motorposition[2] < 60) {
+    if (motorposition[2] < maxAngle) {
       motorposition[2]++;
       Servo3.write(motorposition[2]);
     }
-    if (motorposition[3] < 60) {
+    if (motorposition[3] < maxAngle) {
       motorposition[3]++;
       Servo4.write(motorposition[3]);
     }
-    if (motorposition[4] < 60) {
+    if (motorposition[4] < maxAngle) {
       motorposition[4]++;
       Servo5.write(motorposition[4]);
     }
-    if (motorposition[0] == 60 && motorposition[1] == 60 && motorposition[2] == 60 &&
-        motorposition[3] == 60 && motorposition[4] == 60) {
+    if (motorposition[0] == maxAngle && motorposition[1] == maxAngle && motorposition[2] == maxAngle &&
+        motorposition[3] == maxAngle && motorposition[4] == maxAngle) {
       break;
     }
     delay(20);
@@ -160,7 +162,6 @@ void goodbye() { // starting openhand
       delay(20);
     }
   }
-  openhand();
 }
 
 void switchstatement(String data) {
@@ -184,6 +185,8 @@ void switchstatement(String data) {
   } else {
     Serial.println("did not execute");
   }
+  openhand();
+
 }
 
 void loop() {
