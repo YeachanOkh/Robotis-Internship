@@ -125,9 +125,11 @@ def Thankyou():
     start_time = time.time()
     print("Thank you")
     motor.dxlSetVelo([40, 40, 40, 20, 40], [0, 1, 2, 3, 4])
-    motor.simMotorRun([180], [3])
+    motor.simMotorRun([240], [3])
     time.sleep(0.01)
     motor.simMotorRun([130, 360], [2, 1])
+    time.sleep(0.01)
+    motor.simMotorRun([180],[3])
     time.sleep(0.01)
     motor.dxlSetVelo([40, 40, 40, 65, 40], [0, 1, 2, 3, 4])
     motor.simMotorRun([220], [3])
@@ -160,7 +162,7 @@ def startsetup():
     print("set up move")
     motor.dxlSetVelo([30, 30, 30, 30, 30], [0, 1, 2, 3, 4])
     motor.simMotorRun([90, 270, 140, 265, 270], [0, 1, 2, 3, 4])
-    time.sleep(3)
+    time.sleep(1)
 
 # Dictionary mapping commands to functions
 Command_dict = {
