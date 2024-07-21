@@ -5,6 +5,7 @@ from tensorflow.keras.models import load_model
 from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints, get_depth_at_landmark
 from data_preparation import actions
 import pyrealsense2 as rs
+import time
 
 # Load the model
 model = load_model('action.h5')
@@ -41,6 +42,17 @@ threshold = 0.8
 
 cap = cv2.VideoCapture(0)
 
+# Gesture timing variables
+gesture_duration = 8  # seconds
+rest_duration = 6  # seconds
+gesture_start_time = None
+rest_start_time = None
+detecting_gesture = False
+last_predicted_gesture = None  # To store the last predicted gesture
+
+def in_range(x, y, shape):
+    return 0 <= x < shape[1] and 0 <= y < shape[0]
+
 # Check if the camera opened successfully
 if not cap.isOpened():
     print("Error: Could not open video device.")
@@ -54,35 +66,70 @@ else:
                 print("Error: Could not read frame.")
                 break
 
-            # Make detections
-            image, results = mediapipe_detection(frame, holistic)
+            current_time = time.time()
+            image = frame.copy()  # Initialize the image
 
-            # Draw landmarks
-            draw_styled_landmarks(image, results)
+            if detecting_gesture:
+                # Check if gesture duration is over
+                if gesture_start_time is None:
+                    gesture_start_time = current_time
+                elif current_time - gesture_start_time > gesture_duration:
+                    detecting_gesture = False
+                    rest_start_time = current_time
+                    gesture_start_time = None
+                else:
+                    # Make detections
+                    image, results = mediapipe_detection(frame, holistic)
 
-            # Extract keypoints
-            depth_frame = pipeline.wait_for_frames().get_depth_frame()
-            keypoints = extract_keypoints(results, depth_frame, frame.shape)
+                    # Draw landmarks
+                    draw_styled_landmarks(image, results)
+
+                    # Extract keypoints
+                    depth_frame = pipeline.wait_for_frames().get_depth_frame()
+                    keypoints = extract_keypoints(results, depth_frame, frame.shape)
+                    
+                    # Print wrist landmarks distances
+                    if results.left_hand_landmarks:
+                        left_wrist = results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
+                        x, y = int(left_wrist.x * frame.shape[1]), int(left_wrist.y * frame.shape[0])
+                        if in_range(x, y, frame.shape):
+                            left_wrist_distance = get_depth_at_landmark(depth_frame, x, y)
+                            print(f"Left Wrist Distance: {left_wrist_distance} meters")
+                    
+                    if results.right_hand_landmarks:
+                        right_wrist = results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
+                        x, y = int(right_wrist.x * frame.shape[1]), int(right_wrist.y * frame.shape[0])
+                        if in_range(x, y, frame.shape):
+                            right_wrist_distance = get_depth_at_landmark(depth_frame, x, y)
+                            print(f"Right Wrist Distance: {right_wrist_distance} meters")
+
+                    sequence.append(keypoints)
+                    sequence = sequence[-30:]
+
+                    if len(sequence) == 30:
+                        res = model.predict(np.expand_dims(sequence, axis=0))[0]
+
+                        if np.max(res) > threshold:
+                            image = prob_viz(res, actions, image)
+                            last_predicted_gesture = actions[np.argmax(res)]  # Store the last predicted gesture
+
+                    # Show gesture countdown timer
+                    remaining_time = gesture_duration - (current_time - gesture_start_time)
+                    cv2.putText(image, f'Gesture Time: {remaining_time:.2f}s', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
             
-            # Print wrist landmarks distances
-            if results.left_hand_landmarks:
-                left_wrist = results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
-                left_wrist_distance = get_depth_at_landmark(depth_frame, int(left_wrist.x * frame.shape[1]), int(left_wrist.y * frame.shape[0]))
-                print(f"Left Wrist Distance: {left_wrist_distance} meters")
-            
-            if results.right_hand_landmarks:
-                right_wrist = results.right_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
-                right_wrist_distance = get_depth_at_landmark(depth_frame, int(right_wrist.x * frame.shape[1]), int(right_wrist.y * frame.shape[0]))
-                print(f"Right Wrist Distance: {right_wrist_distance} meters")
-
-            sequence.append(keypoints)
-            sequence = sequence[-30:]
-
-            if len(sequence) == 30:
-                res = model.predict(np.expand_dims(sequence, axis=0))[0]
-
-                if np.max(res) > threshold:
-                    image = prob_viz(res, actions, image)
+            else:
+                # Check if rest duration is over
+                if rest_start_time is None:
+                    rest_start_time = current_time
+                elif current_time - rest_start_time > rest_duration:
+                    detecting_gesture = True
+                    rest_start_time = None
+                else:
+                    # Show rest countdown timer and last predicted gesture
+                    remaining_time = rest_duration - (current_time - rest_start_time)
+                    cv2.putText(image, f'Rest Time: {remaining_time:.2f}s', (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
+                    if last_predicted_gesture:
+                        cv2.putText(image, f'Last Gesture: {last_predicted_gesture}', (10, 70), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA)
 
             cv2.imshow('OpenCV Feed', image)
 
