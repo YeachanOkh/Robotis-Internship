@@ -13,9 +13,10 @@ const int motor2 = 5; // index
 const int motor3 = 6; // middle
 const int motor4 = 9; // ring finger
 const int motor5 = 10; // pinky
-int maxAngle = 90;
-int minAngle = maxAngle - 60;
-int motorposition[5] = {maxAngle, maxAngle, maxAngle, maxAngle, maxAngle}; // M1, M2, M3, M4, M5
+int startAngle = 90;
+int angleChange = 80;
+int maxAngle = startAngle + angleChange;
+int motorposition[5] = {startAngle, startAngle, startAngle, startAngle, startAngle}; // M1, M2, M3, M4, M5
 
 void setup() {
   Servo1.attach(motor1);
@@ -24,40 +25,10 @@ void setup() {
   Servo4.attach(motor4);
   Servo5.attach(motor5);
   Serial.begin(9600);
-}
+} 
 
 void closehand() { // fistbump, yes
-  for (int i = 1; i <= 60; i++) {
-    if (motorposition[0] > minAngle) {
-      motorposition[0]--;
-      Servo1.write(motorposition[0]);
-    }
-    if (motorposition[1] > minAngle) {
-      motorposition[1]--;
-      Servo2.write(motorposition[1]);
-    }
-    if (motorposition[2] > minAngle) {
-      motorposition[2]--;
-      Servo3.write(motorposition[2]);
-    }
-    if (motorposition[3] > minAngle) {
-      motorposition[3]--;
-      Servo4.write(motorposition[3]);
-    }
-    if (motorposition[4] > minAngle) {
-      motorposition[4]--;
-      Servo5.write(motorposition[4]);
-    }
-    if (motorposition[0] == minAngle && motorposition[1] == minAngle && motorposition[2] == minAngle &&
-        motorposition[3] == minAngle && motorposition[4] == minAngle) {
-      break;
-    }
-    delay(20);
-  }
-}
-
-void openhand() { // high five, thank you
-  for (int i = 1; i <= 60; i++) {
+  for (int i = 1; i <= angleChange; i++) {
     if (motorposition[0] < maxAngle) {
       motorposition[0]++;
       Servo1.write(motorposition[0]);
@@ -86,10 +57,40 @@ void openhand() { // high five, thank you
   }
 }
 
+void openhand() { // high five, thank you
+  for (int i = 1; i <= angleChange; i++) {
+    if (motorposition[0] > startAngle) {
+      motorposition[0]--;
+      Servo1.write(motorposition[0]);
+    }
+    if (motorposition[1] > startAngle) {
+      motorposition[1]--;
+      Servo2.write(motorposition[1]);
+    }
+    if (motorposition[2] > startAngle) {
+      motorposition[2]--;
+      Servo3.write(motorposition[2]);
+    }
+    if (motorposition[3] > startAngle) {
+      motorposition[3]--;
+      Servo4.write(motorposition[3]);
+    }
+    if (motorposition[4] > startAngle) {
+      motorposition[4]--;
+      Servo5.write(motorposition[4]);
+    }
+    if (motorposition[0] == startAngle && motorposition[1] == startAngle && motorposition[2] == startAngle &&
+        motorposition[3] == startAngle && motorposition[4] == startAngle) {
+      break;
+    }
+    delay(20);
+  }
+}
+
 void hello() { // starting open hand
   openhand();
-  for (int i = 1; i <= 60; i++) { // thumb moving 60
-    motorposition[0]--;
+  for (int i = 1; i <= angleChange; i++) { // thumb moving 80
+    motorposition[0]++;
     Servo1.write(motorposition[0]);
     delay(20);
   }
@@ -97,25 +98,25 @@ void hello() { // starting open hand
 
 void handshake() { // starting open hand
   openhand();
-  for (int i = 1; i <= 60; i++) {
-    if (i % 3 == 0) { // thumb moving 20
-      motorposition[0]--;
+  for (int i = 1; i <= angleChange; i++) {
+    if (i % 3 == 0) { // thumb moving 26
+      motorposition[0]++;
       Servo1.write(motorposition[0]);
     }
-    if (i % 6 == 0) { // index moving 10
-      motorposition[1]--;
+    if (i % 6 == 0) { // index moving 13
+      motorposition[1]++;
       Servo2.write(motorposition[1]);
     }
-    if (i % 6 == 0) { // middle moving 10
-      motorposition[2]--;
+    if (i % 6 == 0) { // middle moving 13
+      motorposition[2]++;
       Servo3.write(motorposition[2]);
     }
-    if (i % 4 == 0) { // ring finger moving 15
-      motorposition[3]--;
+    if (i % 4 == 0) { // ring finger moving 20
+      motorposition[3]++;
       Servo4.write(motorposition[3]);
     }
-    if (i % 3 == 0) { // pinky moving 20
-      motorposition[4]--;
+    if (i % 3 == 0) { // pinky moving 26
+      motorposition[4]++;
       Servo5.write(motorposition[4]);
     }
     delay(7);
@@ -124,24 +125,24 @@ void handshake() { // starting open hand
 
 void no() {
   openhand();
-  for (int i = 1; i <= 60; i++) {
-    if (i % 2 == 0) { // thumb moving 30
-      motorposition[0]--;
+  for (int i = 1; i <= angleChange; i++) {
+    if (i % 2 == 0) { // thumb moving 40
+      motorposition[0]++;
       Servo1.write(motorposition[0]);
     }
-    if (i % 3 == 0) { // index moving 20
-      motorposition[1]--;
+    if (i % 3 == 0) { // index moving 26
+      motorposition[1]++;
       Servo2.write(motorposition[1]);
     }
-    if (i % 3 == 0) { // middle moving 20
-      motorposition[2]--;
+    if (i % 3 == 0) { // middle moving 26
+      motorposition[2]++;
       Servo3.write(motorposition[2]);
     }
-    // ring finger moving 60
-    motorposition[3]--;
+    // ring finger moving 80
+    motorposition[3]++;
     Servo4.write(motorposition[3]);
-    // pinky moving 60
-    motorposition[4]--;
+    // pinky moving 80
+    motorposition[4]++;
     Servo5.write(motorposition[4]);
     delay(20);
   }
@@ -150,14 +151,14 @@ void no() {
 void goodbye() { // starting openhand
   for (int i = 1; i <= 3; i++) {
     openhand();
-    for (int i = 1; i <= 60; i++) {
-      motorposition[1]--;
+    for (int i = 1; i <= angleChange; i++) {
+      motorposition[1]++;
       Servo2.write(motorposition[1]);
-      motorposition[2]--;
+      motorposition[2]++;
       Servo3.write(motorposition[2]);
-      motorposition[3]--;
+      motorposition[3]++;
       Servo4.write(motorposition[3]);
-      motorposition[4]--;
+      motorposition[4]++;
       Servo5.write(motorposition[4]);
       delay(20);
     }
@@ -182,6 +183,7 @@ void switchstatement(String data) {
     closehand();
   } else if (data == "fistbump") {
     closehand();
+    delay(2000);
   } else {
     Serial.println("did not execute");
   }
