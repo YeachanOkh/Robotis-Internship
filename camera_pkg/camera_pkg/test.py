@@ -1,5 +1,6 @@
 import cv2
 import mediapipe
+
 def main():
     cap = cv2.VideoCapture(0)
 

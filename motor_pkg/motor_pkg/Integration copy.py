@@ -35,6 +35,11 @@ motor.portInitialization(PORT_NUM, ALL_IDs)
 # Calculate the angle for the max length reaching out in the x position
 max_length_angle = calculation.angle_Calc([375, 0, 73], 0)
 
+class MyNode(Node):
+    def __init__(self):
+        super().__init__("arm working")
+        self.get_logger().info("arm is turning on")
+        
 # Check movement of motors
 def checkMovement(ids):
     motorStatus = [0] * len(ids)
