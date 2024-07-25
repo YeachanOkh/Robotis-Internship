@@ -6,9 +6,9 @@ import numpy as np
 import time
 import cv2
 import rasptoarduino as hand
-import rclpy
-from rclpy.node import Node
-from geometry_msgs.msg import Twist
+# import rclpy
+# from rclpy.node import Node
+# from geometry_msgs.msg import Twist
 
 # Define motor IDs
 BASE_ID = 1
@@ -175,8 +175,8 @@ Command_dict = {
 }
 
 def main(args=None):
-    rclpy.init(args=args)
-    node = MyNode()
+    # rclpy.init(args=args)
+    # node = MyNode()
     while True:
         command = input("Enter a command: ")
         if command in Command_dict:
@@ -188,7 +188,7 @@ def main(args=None):
             break
         else:
             print("Invalid command. Please try again.")
-    rclpy.shutdown()
+    # rclpy.shutdown()
 
 # Run the main function
 if __name__ == '__main__':
