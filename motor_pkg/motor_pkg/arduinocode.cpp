@@ -16,7 +16,7 @@ const int motor5 = 10; // pinky
 int startAngle = 45;
 int angleChange = 90;
 int maxAngle = startAngle + angleChange;
-int offset[5] = {5, 0, -16, -10, -13};
+int offset[5] = {5, -10, -16, -10, -13};
 int motorStartAngle[5] = {startAngle + offset[0], startAngle + offset[1], startAngle + offset[2],
  startAngle + offset[3], startAngle + offset[4]};
 int motorMaxAngle[5] = {maxAngle + offset[0], maxAngle + offset[1], maxAngle + offset[2],
