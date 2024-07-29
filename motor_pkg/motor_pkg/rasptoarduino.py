@@ -6,7 +6,7 @@ def handmotor(response):
     ser = serial.Serial('/dev/ttyACM0', 9600, timeout=1)
     changetobyte = response.encode(encoding="utf-8") 
     ser.write(changetobyte)
-    
+    print("send code to arduino")
     # Add a delay to ensure all responses are sent by the Arduino
     time.sleep(1)
     
