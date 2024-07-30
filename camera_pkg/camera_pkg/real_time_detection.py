@@ -3,9 +3,10 @@ import numpy as np
 import mediapipe as mp
 from tensorflow.keras.models import load_model
 from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints, get_depth_at_landmark
-from data_preparation import actions
 import pyrealsense2 as rs
 import time
+
+actions = np.array(['Good Job','Hello', 'Fist Bump','High Five', 'Hungry', 'Thirsty', 'Congratulations','Take Care', 'Handshake'])
 
 # Load the model
 model = load_model('action.h5')
