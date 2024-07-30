@@ -3,9 +3,10 @@ import numpy as np
 import mediapipe as mp
 from tensorflow.keras.models import load_model
 from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints, get_depth_at_landmark
-from data_preparation import actions
 import pyrealsense2 as rs
 import time
+
+actions = np.array(['Good Job','Hello', 'Fist Bump','High Five', 'Hungry', 'Thirsty', 'Congratulations','Take Care', 'Handshake'])
 
 # Load the model
 model = load_model('action.h5')
@@ -88,7 +89,7 @@ else:
                     depth_frame = pipeline.wait_for_frames().get_depth_frame()
                     keypoints = extract_keypoints(results, depth_frame, frame.shape)
                     
-                    # Print wrist landmarks distances
+                    # Process wrist landmarks distances if coordinates are in range
                     if results.left_hand_landmarks:
                         left_wrist = results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
                         x, y = int(left_wrist.x * frame.shape[1]), int(left_wrist.y * frame.shape[0])
