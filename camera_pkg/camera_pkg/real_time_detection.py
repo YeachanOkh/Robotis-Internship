@@ -89,7 +89,7 @@ else:
                     depth_frame = pipeline.wait_for_frames().get_depth_frame()
                     keypoints = extract_keypoints(results, depth_frame, frame.shape)
                     
-                    # Print wrist landmarks distances
+                    # Process wrist landmarks distances if coordinates are in range
                     if results.left_hand_landmarks:
                         left_wrist = results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
                         x, y = int(left_wrist.x * frame.shape[1]), int(left_wrist.y * frame.shape[0])
