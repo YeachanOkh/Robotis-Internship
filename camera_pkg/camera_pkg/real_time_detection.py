@@ -11,6 +11,8 @@ import asyncio
 
 actions = np.array(['Good Job','Hello', 'Fist Bump','High Five', 'Hungry', 'Thirsty', 'Congratulations','Take Care', 'Handshake'])
 
+actions = np.array(['Good Job','Hello', 'Fist Bump','High Five', 'Hungry', 'Thirsty', 'Congratulations','Take Care', 'Handshake'])
+
 # Load the model
 model = load_model('action.h5')
 

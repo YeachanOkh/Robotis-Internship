@@ -60,7 +60,7 @@ void closehand() { // fistbump, yes
      && motorposition[4] == motorMaxAngle[4]) {
       break;
     }
-    delay(20);
+    delay(10);
   }
 }
 
@@ -90,7 +90,7 @@ void openhand() { // high five, thank you
         motorposition[3] == motorStartAngle[3] && motorposition[4] == motorStartAngle[4]) {
       break;
     }
-    delay(20);
+    delay(10);
   }
 }
 
@@ -151,7 +151,7 @@ void no() {
     // pinky moving 80
     motorposition[4]++;
     Servo5.write(motorposition[4]);
-    delay(20);
+    delay(10);
   }
 }
 
@@ -167,7 +167,7 @@ void goodbye() { // starting openhand
       Servo4.write(motorposition[3]);
       motorposition[4]++;
       Servo5.write(motorposition[4]);
-      delay(20);
+      delay(10);
     }
   }
 }
@@ -190,11 +190,12 @@ void switchstatement(String data) {
     closehand();
   } else if (data == "fistbump") {
     closehand();
-    delay(2000);
+  } else if (data == "openhand") {
+    openhand();
+    delay(500);
   } else {
     Serial.println("did not execute");
   }
-  openhand();
 
 }
 
