@@ -3,9 +3,13 @@ import numpy as np
 import mediapipe as mp
 from tensorflow.keras.models import load_model
 from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints, get_depth_at_landmark
-from data_preparation import actions
 import pyrealsense2 as rs
 import time
+from websockets.sync.client import connect
+import asyncio
+
+
+actions = np.array(['Good Job','Hello', 'Fist Bump','High Five', 'Hungry', 'Thirsty', 'Congratulations','Take Care', 'Handshake'])
 
 # Load the model
 model = load_model('action.h5')
@@ -40,7 +44,7 @@ def prob_viz(res, actions, input_frame):
 sequence = []
 threshold = 0.8
 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(4)
 
 # Gesture timing variables
 gesture_duration = 8  # seconds
@@ -88,7 +92,7 @@ else:
                     depth_frame = pipeline.wait_for_frames().get_depth_frame()
                     keypoints = extract_keypoints(results, depth_frame, frame.shape)
                     
-                    # Print wrist landmarks distances
+                    # Process wrist landmarks distances if coordinates are in range
                     if results.left_hand_landmarks:
                         left_wrist = results.left_hand_landmarks.landmark[mp_holistic.HandLandmark.WRIST]
                         x, y = int(left_wrist.x * frame.shape[1]), int(left_wrist.y * frame.shape[0])
