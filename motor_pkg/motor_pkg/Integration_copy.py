@@ -60,7 +60,7 @@ class MyNode(Node):
         msg = String()
         msg.data = feedback
         self.publisher_.publish(msg)
-        self.get_logger().info(f'Published feedback: {msg.data}')
+        self.get_logger().info(f'Gesture finished: {msg.data}')
 
 # Check movement of motors
 def checkMovement(ids):
