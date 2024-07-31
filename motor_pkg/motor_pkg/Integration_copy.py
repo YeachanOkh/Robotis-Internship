@@ -40,11 +40,15 @@ class MyNode(Node):
     def __init__(self):
         super().__init__("arm_working")
         self.get_logger().info("Arm is turning on")
-        self.subscription = self.create_subscription(String,'camera_gesture',self.listener_callback,10)
+        self.subscription = self.create_subscription(
+            String,
+            'camera_gesture',
+            self.listener_callback,
+            10)
         self.subscription  # prevent unused variable warning
 
     def listener_callback(self, msg):
-        command = msg.data.lower()
+        command = msg.data.lower()  # Convert received command to lowercase
         if command in Command_dict:
             self.get_logger().info(f'Received command: {command}')
             startsetup()
@@ -191,4 +195,11 @@ Command_dict = {
 }
 
 def main(args=None):
-    rclpy.init
+    rclpy.init(args=args)
+    node = MyNode()
+    rclpy.spin(node)
+    rclpy.shutdown()
+
+# Run the main function
+if __name__ == '__main__':
+    main()
