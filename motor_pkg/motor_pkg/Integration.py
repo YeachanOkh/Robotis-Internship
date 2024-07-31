@@ -68,7 +68,6 @@ def Hello():
     motor.simMotorRun([260], [1])
     time.sleep(0.1)
     motor.simMotorRun([280], [1])
-    
 
 def Yes():
     start_time = time.time()
@@ -89,13 +88,13 @@ def Yes():
 def Fistbump():
     start_time = time.time()
     print("fistbump")
-    motor.dxlSetVelo([35, 35, 35, 35, 55], [0, 1, 2, 3, 4])
+    motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([200, 80, 180], [3, 2, 4])
     motor.dxlSetVelo([55, 55, 55], [2, 3, 4])
     hand.handmotor("fistbump")
-    time.sleep(0.05)
+    time.sleep(0.1)
     motor.simMotorRun([60, 180, 172], [2, 3, 4])
-    time.sleep(0.02)
+    time.sleep(0.3)
     motor.simMotorRun([200, 80, 180], [3, 2, 4])
     
     

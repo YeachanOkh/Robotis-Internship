@@ -3,8 +3,6 @@ from dynamixel_sdk import *  # Uses Dynamixel SDK library
 import os
 
 if os.name == 'nt':
-    import msvcrt
-
     def getch():
         return msvcrt.getch().decode()
 else:
