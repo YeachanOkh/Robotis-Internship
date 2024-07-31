@@ -40,8 +40,10 @@ class MyNode(Node):
     def __init__(self):
         super().__init__("arm_working")
         self.get_logger().info("Arm is turning on")
-        self.subscription = self.create_subscription(String,'camera_gesture',self.listener_callback,10)
+        self.subscription = self.create_subscription(
+            String,'camera_gesture',self.listener_callback,10)
         self.subscription  # prevent unused variable warning
+        self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
 
     def listener_callback(self, msg):
         command = msg.data.lower()  # Convert received command to lowercase
@@ -50,8 +52,15 @@ class MyNode(Node):
             startsetup()
             Command_dict[command]()
             startsetup()
+            self.publish_feedback(f'Command {command} executed successfully.')
         else:
             self.get_logger().info(f'Invalid command received: {command}')
+
+    def publish_feedback(self, feedback):
+        msg = String()
+        msg.data = feedback
+        self.publisher_.publish(msg)
+        self.get_logger().info(f'Published feedback: {msg.data}')
 
 # Check movement of motors
 def checkMovement(ids):
