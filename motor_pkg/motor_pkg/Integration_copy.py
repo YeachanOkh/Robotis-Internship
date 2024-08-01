@@ -39,6 +39,8 @@ max_length_angle = calculation.angle_Calc([375, 0, 73], 0)
 class MyNode(Node):
     def __init__(self):
         super().__init__("arm_working")
+        self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
+        
         self.get_logger().info("Arm is turning on")
 
         command = input("Enter a command: ")
@@ -55,8 +57,6 @@ class MyNode(Node):
         #     String,'camera_gesture',self.listener_callback,10)
         # self.subscription  # prevent unused variable warning
 
-        self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
-        self.get_logger().info("test")
 
     # def listener_callback(self, msg):
 
