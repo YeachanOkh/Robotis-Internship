@@ -40,15 +40,8 @@ class MyNode(Node):
     def __init__(self):
         super().__init__("arm_working")
         self.get_logger().info("Arm is turning on")
-        self.subscription = self.create_subscription(
-            String,'camera_gesture',self.listener_callback,10)
-        self.subscription  # prevent unused variable warning
 
-        self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
-        self.get_logger().info("test")
-
-    def listener_callback(self, msg):
-        command = msg.data.lower()  # Convert received command to lowercase
+        command = input("Enter a command: ")
         if command in Command_dict:
             self.get_logger().info(f'Received command: {command}')
             startsetup()
@@ -57,6 +50,15 @@ class MyNode(Node):
             self.publish_feedback(f'Command {command} executed successfully.')
         else:
             self.get_logger().info(f'Invalid command received: {command}')
+
+        # self.subscription = self.create_subscription(
+        #     String,'camera_gesture',self.listener_callback,10)
+        # self.subscription  # prevent unused variable warning
+
+        self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
+        self.get_logger().info("test")
+
+    # def listener_callback(self, msg):
 
     def publish_feedback(self, feedback):
         msg = String()
