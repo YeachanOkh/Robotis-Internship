@@ -33,8 +33,8 @@ threshold = 0.8
 cap = cv2.VideoCapture(4)
 
 # Gesture timing variables
-gesture_duration = 8  # seconds
-rest_duration = 6  # secondss
+gesture_duration = 4  # seconds
+rest_duration = 4  # secondss
 gesture_start_time = None
 rest_start_time = None
 detecting_gesture = False

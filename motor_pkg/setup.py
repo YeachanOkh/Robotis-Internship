@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "arm_node=motor_pkg.Integration:main"
+            "arm_node=motor_pkg.Integration_copy:main"
         ],
     },
 )
