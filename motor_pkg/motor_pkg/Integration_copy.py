@@ -40,9 +40,9 @@ class MyNode(Node):
     def __init__(self):
         super().__init__("arm_working")
         self.get_logger().info("Arm is turning on")
-        self.subscription = self.create_subscription(
-            String,'camera_gesture',self.listener_callback,10)
-        self.subscription  # prevent unused variable warning
+        # self.subscription = self.create_subscription(
+        #     String,'camera_gesture',self.listener_callback,10)
+        # self.subscription  # prevent unused variable warning
         self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
 
     def listener_callback(self, msg):
