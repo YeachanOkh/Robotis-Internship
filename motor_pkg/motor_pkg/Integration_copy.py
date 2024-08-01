@@ -52,7 +52,7 @@ class MyNode(Node):
                 startsetup()
                 Command_dict[command]()
                 startsetup()
-                self.publish_feedback(f'Command {command} executed successfully.')
+                self.publish_feedback(f'Command {command} executed successfully. Waiting for next reply.')
             else:
                 self.get_logger().info(f'Invalid command received: {command}')
 
