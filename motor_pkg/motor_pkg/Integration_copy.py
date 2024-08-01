@@ -181,9 +181,10 @@ def No():
 def Goodbye():
     start_time = time.time()
     print("Goodbye")
-    hand.handmotor("goodbye")
     motor.dxlSetVelo([30, 30, 30, 30, 55], [0, 1, 2, 3, 4])
     motor.simMotorRun([220, 85, 265], [3, 2, 4])
+    time.sleep(1)
+    hand.handmotor("goodbye")
 
 # Setup initial motor positions
 def startsetup():
