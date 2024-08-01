@@ -185,7 +185,7 @@ def Goodbye():
     motor.simMotorRun([220, 85, 265], [3, 2, 4])
     time.sleep(0.5)
     hand.handmotor("goodbye")
-    time.sleep(2)
+    time.sleep(2.5)
 
 # Setup initial motor positions
 def startsetup():
