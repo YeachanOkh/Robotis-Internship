@@ -50,11 +50,11 @@ class MyNode(Node):
             if command in Command_dict:
                 self.get_logger().info(f'Received command: {command}')
                 startsetup()
-                Command_dict[command]()
+                Command_dict[command.lower()]()
                 startsetup()
-                self.publish_feedback(f'Command {command} executed successfully. Waiting for next reply.')
+                self.publish_feedback(f'Command {command.lower()} executed successfully. Waiting for next reply.')
             else:
-                self.get_logger().info(f'Invalid command received: {command}')
+                self.get_logger().info(f'Invalid command received: {command.lower()}')
 
 
     # def listener_callback(self, msg):
@@ -196,12 +196,12 @@ def startsetup():
 Command_dict = {
     "hello": Hello,
     "no": No,
-    "thankyou": Thankyou,
-    "handshake": Handshake,
-    "highfive": Highfive,
+    "thank you": Thankyou,
+    "hand shake": Handshake,
+    "high five": Highfive,
     "goodbye": Goodbye,
     "yes": Yes,
-    "fistbump": Fistbump,
+    "fist bump": Fistbump,
 }
 
 def main(args=None):
