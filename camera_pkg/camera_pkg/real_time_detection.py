@@ -77,7 +77,6 @@ async def send_frame(websocket):
                 await websocket.ping()
                 await asyncio.sleep(20)  # Adjust the interval as needed
             except websockets.ConnectionClosed:
->>>>>>> 52a6d3ff085b0f53f09bce07c7a0f4641cccddf2
                 break
 
     ping_task = asyncio.create_task(send_pings())

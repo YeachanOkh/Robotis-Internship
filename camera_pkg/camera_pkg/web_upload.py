@@ -200,6 +200,7 @@ def process_frames():
 
             if cv2.waitKey(10) & 0xFF == ord('q'):
                 break
+            time.sleep(.2)
 
     cap.release()
     pipeline.stop()
