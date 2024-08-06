@@ -1,14 +1,15 @@
 #ALL IMPORTS
 from dynamixel_sdk import *  # Uses Dynamixel SDK library
 import os
+import sys
+import tty
+import termios
 
 if os.name == 'nt':
+    
     def getch():
         return msvcrt.getch().decode()
 else:
-    import sys
-    import tty
-    import termios
     fd = sys.stdin.fileno()
     old_settings = termios.tcgetattr(fd)
 
