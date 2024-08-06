@@ -1,11 +1,11 @@
 #!/usr/bin/env python3
 import math
-import Motorcontrol as motor
-import movementcalc as calculation
+from motor_pkg import Motorcontrol as motor
+from motor_pkg import movementcalc as calculation
 import numpy as np
 import time
 import cv2
-import rasptoarduino as hand
+from motor_pkg import rasptoarduino as hand
 import rclpy
 from rclpy.node import Node
 from std_msgs.msg import String
