@@ -132,9 +132,6 @@ def Highfive():
     hand.handmotor("highfive")
     motor.dxlSetVelo([30, 30, 30, 30, 65], [0, 1, 2, 3, 4])
     motor.simMotorRun([265, 160, 40], [4, 3, 2])
-    time.sleep(0.2)
-    motor.dxlSetVelo([30, 30, 50, 50, 50], [0, 1, 2, 3, 4])
-    motor.simMotorRun([20, 135, 245], [2, 3, 4])
 
 def Handshake():
     start_time = time.time()
