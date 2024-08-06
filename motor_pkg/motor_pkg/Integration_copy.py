@@ -46,15 +46,15 @@ class MyNode(Node):
         # self.subscription  # prevent unused variable warning
         self.get_logger().info("Arm is turning on")
         while True:
-            command = input("Enter a command: ")
+            command = input("Enter a command: ").lower()
             if command in Command_dict:
                 self.get_logger().info(f'Received command: {command}')
                 startsetup()
-                Command_dict[command.lower()]()
+                Command_dict[command()]()
                 startsetup()
-                self.publish_feedback(f'Command {command.lower()} executed successfully. Waiting for next reply.')
+                self.publish_feedback(f'Command {command} executed successfully. Waiting for next reply.')
             else:
-                self.get_logger().info(f'Invalid command received: {command.lower()}')
+                self.get_logger().info(f'Invalid command received: {command}')
 
 
     # def listener_callback(self, msg):
