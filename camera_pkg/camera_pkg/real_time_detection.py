@@ -9,7 +9,6 @@ from websockets.sync.client import connect
 import asyncio
 import websockets
 
-<<<<<<< HEAD
 actions = np.array(['Good Job','Hello', 'Fist Bump','High Five', 'Hungry', 'Thirsty', 'Congratulations','Take Care', 'Handshake'])
 
 # Load the model
