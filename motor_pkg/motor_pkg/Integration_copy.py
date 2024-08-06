@@ -50,7 +50,7 @@ class MyNode(Node):
             if command in Command_dict:
                 self.get_logger().info(f'Received command: {command}')
                 startsetup()
-                Command_dict[command()]()
+                Command_dict[command]()
                 startsetup()
                 self.publish_feedback(f'Command {command} executed successfully. Waiting for next reply.')
             else:
