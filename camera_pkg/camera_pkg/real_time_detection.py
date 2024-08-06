@@ -41,7 +41,7 @@ def prob_viz(res, actions, input_frame):
 sequence = []
 threshold = 0.8
 
-cap = cv2.VideoCapture(4)
+cap = cv2.VideoCapture(6)
 
 # Gesture timing variables
 gesture_duration = 8  # seconds

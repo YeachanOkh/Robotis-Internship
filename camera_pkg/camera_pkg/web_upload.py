@@ -30,7 +30,7 @@ pipeline.start(config)
 sequence = []
 threshold = 0.8
 
-cap = cv2.VideoCapture(4)
+cap = cv2.VideoCapture(6)
 
 # Gesture timing variables
 gesture_duration = 4  # seconds
