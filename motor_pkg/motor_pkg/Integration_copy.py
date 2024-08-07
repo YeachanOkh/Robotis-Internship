@@ -41,12 +41,12 @@ class MyNode(Node):
         super().__init__("arm_working")
         self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
 
-        # self.subscription = self.create_subscription(
-        #     String,'camera_gesture',self.listener_callback,10)
-        # self.subscription  # prevent unused variable warning
+        self.subscription = self.create_subscription(
+            String,'camera_gesture',self.listener_callback,10)
+        self.subscription  # prevent unused variable warning
         self.get_logger().info("Arm is turning on")
         while True:
-            command = input("Enter a command: ").lower()
+            command = input("Response back: ").lower()
             if command in Command_dict:
                 self.get_logger().info(f'Received command: {command}')
                 startsetup()
@@ -57,7 +57,8 @@ class MyNode(Node):
                 self.get_logger().info(f'Invalid command received: {command}')
 
 
-    # def listener_callback(self, msg):
+    def listener_callback(self, msg):
+        self.get_logger().info(f'Received gesture command from camera node: {msg.data}')
 
     def publish_feedback(self, feedback):
         msg = String()

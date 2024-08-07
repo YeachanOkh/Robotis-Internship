@@ -9,16 +9,15 @@ from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_
 import pyrealsense2 as rs
 import time
 import asyncio
+from websockets.sync.client import connect
+import websockets
 
-class GestureRecognitionNode(Node):
+class camera(Node):
     def __init__(self):
-        super().__init__('gesture_recognition_node')
-        self.publisher_ = self.create_publisher(String, 'gesture_done', 10)
+        super().__init__('camera_node')
+        self.publisher_ = self.create_publisher(String, 'camera_gesture', 10)
         self.subscription = self.create_subscription(
-            String,
-            'gesture_done',
-            self.listener_callback,
-            10)
+            String, 'gesture_done', self.listener_callback, 10)
         self.subscription  # prevent unused variable warning
 
         self.actions = np.array(['Good Job', 'Hello', 'Fist Bump', 'High Five', 'Hungry', 'Thirsty',
@@ -34,7 +33,7 @@ class GestureRecognitionNode(Node):
         # Initialize RealSense pipeline
         self.pipeline = rs.pipeline()
         self.config = rs.config()
-        self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 30)
+        self.config.enable_stream(rs.stream.depth, 640, 480, rs.format.z16, 15)
         self.pipeline.start(self.config)
 
         self.sequence = []
@@ -169,9 +168,9 @@ class GestureRecognitionNode(Node):
 
 def main(args=None):
     rclpy.init(args=args)
-    gesture_recognition_node = GestureRecognitionNode()
-    rclpy.spin(gesture_recognition_node)
-    gesture_recognition_node.destroy_node()
+    camera = camera()
+    rclpy.spin(camera)
+    camera.destroy_node()
     rclpy.shutdown()
 
 if __name__ == '__main__':
