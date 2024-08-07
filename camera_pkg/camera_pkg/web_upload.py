@@ -44,7 +44,6 @@ last_predicted_gesture = None  # To store the last predicted gesture
 
 frame = None
 processed_frame = None
-lock = threading.Lock()
 
 class MyNode(Node):
     def __init__(self):
