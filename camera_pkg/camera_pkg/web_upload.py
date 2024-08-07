@@ -2,7 +2,7 @@ import cv2
 import numpy as np
 import mediapipe as mp
 from tensorflow.keras.models import load_model
-from mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints, get_depth_at_landmark
+from camera_pkg.mediapipe_utils import mediapipe_detection, draw_styled_landmarks, extract_keypoints, get_depth_at_landmark
 import pyrealsense2 as rs
 import time
 from websockets.sync.client import connect
@@ -27,7 +27,7 @@ async def send_frame(websocket):
          'Congratulations', 'Take Care', 'Handshake'])
 
     # Load the model
-    model = load_model('action.h5')
+    model = load_model('/home/ubuntu/robotis-internship/src/Robotis-Internship/camera_pkg/camera_pkg/action.h5')
 
     # Initialize MediaPipe holistic model
     mp_holistic = mp.solutions.holistic  # Holistic model
@@ -68,7 +68,7 @@ async def send_frame(websocket):
 
     # Gesture timing variables
     gesture_duration = 8  # seconds
-    rest_duration = 6  # seconds
+    rest_duration = 12  # seconds
     gesture_start_time = None
     rest_start_time = None
     detecting_gesture = False
