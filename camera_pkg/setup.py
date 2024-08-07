@@ -20,7 +20,7 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            "camera_node=camera_pkg.test:main"
+            "camera_node=camera_pkg.hand_detection:main"
         ],
     },
 )
