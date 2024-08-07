@@ -68,7 +68,7 @@ async def send_frame(websocket):
 
     # Gesture timing variables
     gesture_duration = 8  # seconds
-    rest_duration = 12  # seconds
+    rest_duration = 30  # seconds
     gesture_start_time = None
     rest_start_time = None
     detecting_gesture = False
