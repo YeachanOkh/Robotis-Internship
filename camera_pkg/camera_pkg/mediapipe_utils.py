@@ -41,7 +41,7 @@ def extract_keypoints(results, depth_frame, frame_shape):
         x, y = int(wrist_landmark.x * frame_shape[1]), int(wrist_landmark.y * frame_shape[0])
         lh_z = get_depth_at_landmark(depth_frame, x, y)
         if lh_z is not None:
-            print(f"Left wrist depth: {lh_z} meters")  # Print depth value for left wrist
+            # print(f"Left wrist depth: {lh_z} meters")  # Print depth value for left wrist
             lh[2] = lh_z  # Replace the z value of the wrist landmark
 
     rh = np.array([[res.x, res.y, 0.0] for res in results.right_hand_landmarks.landmark]).flatten() if results.right_hand_landmarks else np.zeros(21*3)
@@ -50,7 +50,7 @@ def extract_keypoints(results, depth_frame, frame_shape):
         x, y = int(wrist_landmark.x * frame_shape[1]), int(wrist_landmark.y * frame_shape[0])
         rh_z = get_depth_at_landmark(depth_frame, x, y)
         if rh_z is not None:
-            print(f"Right wrist depth: {rh_z} meters")  # Print depth value for right wrist
+            # print(f"Right wrist depth: {rh_z} meters")  # Print depth value for right wrist
             rh[2] = rh_z  # Replace the z value of the wrist landmark
 
     return np.concatenate([pose, lh, rh])
