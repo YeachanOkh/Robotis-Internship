@@ -169,10 +169,10 @@ async def send_frame(websocket):
                         # Show rest countdown timer and last predicted gesture
                         remaining_time = rest_duration - (
                                     current_time - rest_start_time)
-                        cv2.putText(image,
-                                    f'Waiting for Response: {remaining_time:.2f}s',
-                                    (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1,
-                                    (255, 255, 255), 2, cv2.LINE_AA)
+                        # cv2.putText(image,
+                        #             f'Waiting for Response: {remaining_time:.2f}s',
+                        #             (10, 30), cv2.FONT_HERSHEY_SIMPLEX, 1,
+                        #             (255, 255, 255), 2, cv2.LINE_AA)
                         if last_predicted_gesture:
                             cv2.putText(image,
                                         f'Last Gesture: {last_predicted_gesture}',
