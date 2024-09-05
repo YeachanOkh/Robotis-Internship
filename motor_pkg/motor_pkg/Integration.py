@@ -68,6 +68,8 @@ def Hello():
     motor.simMotorRun([260], [1])
     time.sleep(0.1)
     motor.simMotorRun([280], [1])
+    time.sleep(0.1)
+    motor.simMotorRun([130], [0])
 
 def Yes():
     start_time = time.time()
